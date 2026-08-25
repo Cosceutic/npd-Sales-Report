@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard KPI สินค้าใหม่ — Cosceutic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@500;600;700&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#ffffff; --border:#e7eaf0;
+    --text:#1e2530; --text2:#5b6472; --text3:#9aa2b1;
+    --blue:#7ba8d8; --blue-dark:#5c86bb; --blue-soft:#eaf1fa;
+    --pink:#f08ca4; --teal:#7dd8c8; --green:#8fdba0; --lavender:#b8c4e8;
+    --amber:#d98d16; --red:#c53a3a;
+    --green-bg:#eaf8ee; --red-bg:#fbeaea; --amber-bg:#fdf3e2;
+    --shadow-sm:0 1px 2px rgba(30,37,48,0.05);
+    --shadow-md:0 4px 14px rgba(30,37,48,0.07);
+    --radius:16px; --radius-sm:12px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:'Sarabun',-apple-system,'Segoe UI',sans-serif;
+    background:var(--bg); color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px 80px;}
+  h1{font-family:'Prompt',sans-serif;font-size:20px;font-weight:700;margin:0;letter-spacing:-0.01em;color:#fff;}
+  .subtitle{color:rgba(255,255,255,0.85);font-size:11px;margin:1px 0 0;font-weight:500;letter-spacing:0.02em;text-transform:uppercase;}
+  h2{font-family:'Prompt',sans-serif;font-size:17px;font-weight:700;letter-spacing:-0.005em;
+    margin:0 0 16px;color:var(--text);display:flex;align-items:baseline;gap:8px;}
+  h2 .h2-sub{font-family:'Sarabun',sans-serif;font-size:13px;font-weight:400;color:var(--text3);}
+  .topbar{position:sticky;top:0;z-index:30;background:linear-gradient(135deg,var(--blue),var(--blue-dark));
+    box-shadow:0 2px 8px rgba(92,134,187,0.25);}
+  .topbar-inner{max-width:1100px;margin:0 auto;padding:14px 24px;}
+  .topbar-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .brand-row{display:flex;align-items:center;gap:12px;}
+  .brand-icon{width:38px;height:38px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .tabs{display:flex;gap:4px;background:rgba(255,255,255,0.18);padding:4px;border-radius:999px;}
+  .tab-btn{background:transparent;border:none;padding:7px 16px;
+    font-family:'Sarabun',sans-serif;font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);
+    cursor:pointer;border-radius:999px;white-space:nowrap;transition:all .15s ease;}
+  .tab-btn:hover{color:#fff;}
+  .tab-btn.active{background:#fff;color:var(--blue-dark);box-shadow:var(--shadow-sm);}
+  .page{display:none;padding-top:24px;animation:fadeUp .35s ease;}
+  .page.active{display:block;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-bottom:24px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);
+    padding:20px 20px 18px;box-shadow:var(--shadow-sm);transition:all .2s ease;}
+  .card:hover{box-shadow:var(--shadow-md);transform:translateY(-1px);}
+  .card.good{border-color:#cdeed8;}
+  .card.bad{border-color:#f3cbcb;}
+  .card.warn{border-color:#f2ddaa;}
+  .card p.label{font-size:12.5px;color:var(--text2);margin:0 0 8px;font-weight:500;}
+  .card p.value{font-family:'Prompt',sans-serif;font-size:26px;font-weight:700;margin:0;color:var(--blue-dark);}
+  .card.good p.value{color:#2a9d5c;}
+  .card.bad p.value{color:var(--red);}
+  .card.warn p.value{color:#a2650a;}
+  section{margin-bottom:32px;}
+  .section-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+    padding:24px;box-shadow:var(--shadow-sm);}
+  .chart-box{position:relative;width:100%;background:var(--card);border:1px solid var(--border);
+    border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm);}
+  .legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;font-size:12px;color:var(--text2);}
+  .legend span.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:-1px;}
+  table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;background:var(--card);
+    border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;box-shadow:var(--shadow-sm);}
+  th,td{padding:11px 14px;text-align:right;border-bottom:1px solid var(--border);}
+  tr:last-child td{border-bottom:none;}
+  th:first-child,td:first-child,th:nth-child(2),td:nth-child(2){text-align:left;}
+  th{background:var(--blue-soft);color:var(--blue-dark);font-weight:700;font-size:11.5px;letter-spacing:0.03em;text-transform:uppercase;}
+  tbody tr:hover{background:#fafbfc;}
+  tr.risk-red{background:var(--red-bg);}
+  tr.risk-red:hover{background:#f7dede;}
+  tr.risk-green{background:var(--green-bg);}
+  tr.risk-paused{background:#f4f5f7;color:var(--text3);}
+  .flag-badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:10.5px;font-weight:700;}
+  .flag-red{background:#f4c2c2;color:#7a1f1f;}
+  .flag-green{background:#c3e6d3;color:#1c5e3d;}
+  .flag-paused{background:#e2e0db;color:#5a5850;}
+  .badge-new{display:inline-block;padding:2px 8px;border-radius:999px;font-size:9.5px;font-weight:700;
+    background:#d7ecdd;color:#1f6b45;margin-left:7px;}
+  .actions{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;box-shadow:var(--shadow-sm);}
+  .actions ol{margin:0;padding-left:20px;}
+  .actions li{margin-bottom:16px;padding-left:2px;}
+  .actions li:last-child{margin-bottom:0;}
+  .actions li b{color:var(--blue-dark);}
+  .callout{background:var(--blue-soft);border:1px solid #d6e4f5;border-left:4px solid var(--blue);
+    border-radius:var(--radius-sm);padding:14px 18px;font-size:13px;margin-bottom:16px;line-height:1.7;}
+  .callout.warn{background:var(--amber-bg);border-color:#f2ddaa;border-left-color:var(--amber);}
+  .callout.red{background:var(--red-bg);border-color:#f0c6c6;border-left-color:var(--red);}
+  .callout.blue{background:var(--blue-soft);border-color:#d6e4f5;border-left-color:var(--blue);}
+  .notice-banner{background:#fdf1c8;border-bottom:1px solid #f2dfa0;padding:12px 24px;font-size:13px;color:#6b4e00;}
+  td.clickable{cursor:pointer;color:var(--blue-dark);font-weight:600;text-decoration:underline;text-decoration-color:transparent;transition:text-decoration-color .15s ease;}
+  td.clickable:hover{text-decoration-color:var(--blue-dark);background:var(--blue-soft);}
+  .modal-backdrop{display:none;position:fixed;inset:0;background:rgba(30,37,48,0.45);z-index:100;align-items:center;justify-content:center;padding:20px;}
+  .modal-backdrop.open{display:flex;}
+  .modal-box{background:#fff;border-radius:var(--radius);max-width:520px;width:100%;max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(30,37,48,0.3);}
+  .modal-header{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#fff;border-radius:var(--radius) var(--radius) 0 0;}
+  .modal-header h3{margin:0;font-family:'Prompt',sans-serif;font-size:16px;color:var(--text);}
+  .modal-header .modal-sub{font-size:12px;color:var(--text3);margin-top:2px;}
+  .modal-close{background:var(--blue-soft);border:none;width:28px;height:28px;border-radius:50%;cursor:pointer;color:var(--blue-dark);font-size:16px;line-height:1;display:flex;align-items:center;justify-content:center;}
+  .modal-close:hover{background:#dbe8f7;}
+  .modal-body{padding:8px 22px 20px;}
+  .modal-body table{box-shadow:none;border:none;}
+  .modal-body th,.modal-body td{padding:9px 10px;}
+  .modal-total-row td{font-weight:700;background:var(--blue-soft);}
+  footer{font-size:11px;color:var(--text3);text-align:center;margin-top:36px;padding-top:20px;border-top:1px solid var(--border);}
+  @media (max-width:640px){ .wrap{padding:0 16px 60px;} .card p.value{font-size:21px;} }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-row">
+      <div class="brand-row">
+        <div class="brand-icon">
+          <svg width="20" height="20" viewBox="0 0 100 100" fill="none" stroke="var(--blue)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M38,8 L38,42 L14,86 L86,86 L62,42 L62,8"/></svg>
+        </div>
+        <div>
+          <h1>NPD KPI Dashboard</h1>
+          <p class="subtitle">Cosceutic Innovation Lab</p>
+        </div>
+      </div>
+      <div class="tabs" id="tabBar">
+        <button class="tab-btn active" data-page="p-overview">ภาพรวม</button>
+        <button class="tab-btn" data-page="p-bestseller">สินค้าขายดี</button>
+        <button class="tab-btn" data-page="p-category">หมวดหมู่</button>
+        <button class="tab-btn" data-page="p-weekly">รายสัปดาห์</button>
+        <button class="tab-btn" data-page="p-lifecycle">อายุสินค้าใหม่</button>
+        <button class="tab-btn" data-page="p-weeklybest">ขายดีรายสัปดาห์</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="notice-banner">📢 ข้อมูล ณ 22 มิ.ย. – 23 ส.ค. 2026 · นิยามสินค้าใหม่: อายุ ≤120 วันจากวันเริ่มขายจริง (คำนวณแยกตามช่วงเวลาจริง) · อัปเดต <span id="genDate"></span></div>
+<div class="wrap">
+
+  <!-- OVERVIEW -->
+  <div class="page active" id="p-overview">
+    <div class="callout red">
+      <b>นิยามที่ใช้:</b> สินค้าใหม่ต้องมีสถานะ ≤120 วันจากวันเริ่มขายจริง<b>ในช่วงเวลานั้นๆ</b> ไม่ใช่ list ตายตัว — SKU แต่ละตัวเข้า/ออกจากการนับตามอายุจริงของมันเอง (เช่น SK039 นับใน 22มิ.ย.-19ก.ค. เพราะยังไม่ครบ 120 วัน แต่หลุดจากการนับตั้งแต่ 30 ก.ค. เป็นต้นไป)
+    </div>
+    <section>
+      <h2>A. KPI Headline (สะสม 8 ช่วง — 22 มิ.ย.–23 ส.ค.)</h2>
+      <div class="cards">
+        <div class="card"><p class="label">ยอดขายรวมทั้งพอร์ต</p><p class="value">฿13,504,665</p></div>
+        <div class="card"><p class="label">ยอดขายสินค้าใหม่ (ตามอายุจริง)</p><p class="value">฿1,975,174</p></div>
+        <div class="card bad"><p class="label">% สินค้าใหม่ (target 20%)</p><p class="value">14.6%</p></div>
+        <div class="card bad"><p class="label">Gap ต่อ target</p><p class="value">-฿725,759</p></div>
+      </div>
+      <div class="callout warn">
+        <b>สถานะ:</b> หลุดเป้า 20% ต่อเนื่อง 7 จาก 8 ช่วงเวลา (ผ่านแค่ช่วง 13-19 ก.ค. ที่ 23.5%) — ช่วงล่าสุด (17-23 ส.ค.) ทำสถิติต่ำสุด 6.1% เพราะ <b>SK044 สินค้าหมด</b> (ยืนยันแล้ว ไม่ใช่ demand หด) ยอดร่วง -71% จากสัปดาห์ก่อน
+      </div>
+      <div class="chart-box">
+        <div style="position:relative;height:260px;"><canvas id="trendChart"></canvas></div>
+        <div class="legend">
+          <span><span class="dot" style="background:#5FA97D;"></span>ผ่านเป้า</span>
+          <span><span class="dot" style="background:#c53a3a;"></span>ไม่ผ่านเป้า</span>
+          <span><span class="dot" style="background:#5b6472;"></span>target 20%</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>B. สถานะสินค้าใหม่ปัจจุบัน (active วันนี้)</h2>
+      <table>
+        <thead><tr><th>SKU</th><th>สินค้า</th><th>เริ่มขาย</th><th>หมดอายุ</th><th>คงเหลือ</th><th>สถานะ</th></tr></thead>
+        <tbody id="lifecycleSummary"></tbody>
+      </table>
+      <div class="callout red" style="margin-top:16px;">
+        <b>ธงเตือน:</b> SK044 <b>สินค้าหมดสต็อก</b> (ยืนยันแล้ว) ในจังหวะที่กำลังจะหมดสถานะสินค้าใหม่วันที่ 2 ก.ย. 69 (10 วัน) — ถ้า restock ไม่ทันก่อนวันนั้น เท่ากับเสียโอกาสช่วงสุดท้ายที่ SK044 จะช่วยดัน KPI ไปฟรีๆ ตามด้วย MK005-01PEACH หมดอายุวันเดียวกัน และ MK054-PeachPop/Colorless หมดอายุ 4 ก.ย. 69 (12 วัน) — ข่าวดีคือ FR001-FR005 กลับมาขายจริงแล้วตั้งแต่ 20 ส.ค. 69 (หมดอายุใหม่ 18 ธ.ค. 69) ช่วยพยุงไม่ให้พอร์ตเหลือสินค้าใหม่ 0 ตัว แต่ยอดยังน้อยมาก (รวม 5 ตัว ฿2,237 ใน 4 วันแรก)
+      </div>
+    </section>
+
+    <section>
+      <h2>Action Plan</h2>
+      <div class="actions">
+        <ol>
+          <li><b>เร่ง media spend ให้ FR001-FR005 ทันที</b> — กลับมาขายแล้ว 20 ส.ค. แต่ยอด 4 วันแรกรวมกันแค่ ฿2,237 น้อยเกินไปที่จะพยุง % สินค้าใหม่ ต้องดันให้โตเร็วก่อน SK044/PEACH/PP/CL ทยอยหมดอายุ</li>
+          <li><b>SK044 สินค้าหมด (ยืนยันแล้ว) — เร่ง restock ด่วนที่สุด</b> ยอดร่วง -71% (190k→55.6k) เพราะของขาดสต็อก ไม่ใช่ demand หด จังหวะนี้อันตรายมาก เพราะ SK044 จะหมดสถานะสินค้าใหม่อยู่แล้ววันที่ 2 ก.ย. (อีก 10 วัน) — ถ้าของกลับมาขายไม่ทันก่อนวันนั้น จะเสียโอกาสสุดท้ายที่ SK044 จะนับเป็นสินค้าใหม่ไปฟรีๆ ทั้งที่ปกติเป็นตัวคุม KPI มาตลอด 8 สัปดาห์</li>
+          <li><b>MS060-04 ยืนยันแล้วว่าไม่ใช่สินค้าใหม่</b> — ยอด ฿23,128 ในสัปดาห์ 17-23 ส.ค. ไม่นับรวมในการคำนวณ % สินค้าใหม่ เพราะเกิน 120 วันแล้ว</li>
+          <li><b>Haircare (SK044) คุมสัดส่วนสินค้าใหม่สูงมาโดยตลอด</b> — เมื่อ SK044 อ่อนตัว สัดส่วนจะเปลี่ยนเร็ว ควรกระจาย risk ไปหมวดอื่นเมื่อมี SKU ใหม่เข้ามาเพิ่ม (FR ช่วยเรื่อง fragrance, MS060 อาจช่วยเรื่อง makeup)</li>
+        </ol>
+      </div>
+    </section>
+  </div>
+
+  <!-- BESTSELLERS -->
+  <div class="page" id="p-bestseller">
+    <section>
+      <h2>Top 20 สินค้าขายดี ทั้งพอร์ต (สะสม 22 มิ.ย.–12 ก.ค. — 3 สัปดาห์แรก)</h2>
+      <div class="callout">SK031 (Kids and Tweens Hybrid Sunscreen) ติด Top 4 ยอดขายแต่ margin แค่ 35.1% ต่ำกว่าพอร์ตเฉลี่ยเกือบครึ่ง — ขายดีแต่ไม่ทำกำไรตามมาตรฐาน ควรเช็ค pricing/cost structure ก่อนเร่ง spend เพิ่ม</div>
+      <div class="callout warn">⚠ ตาราง Top 20 นี้เป็นยอดสะสม 3 สัปดาห์แรกเท่านั้น (22 มิ.ย.–12 ก.ค.) ยังไม่รวมช่วงหลังจากนั้น</div>
+      <div class="chart-box">
+        <div style="position:relative;height:820px;"><canvas id="bestSellerChart"></canvas></div>
+        <div class="legend">
+          <span><span class="dot" style="background:#c3c2b7;"></span>สินค้าเดิม</span>
+          <span><span class="dot" style="background:#5FA97D;"></span>สินค้าใหม่ (ตามอายุ ≤120 วัน ณ ตอนนั้น)</span>
+        </div>
+      </div>
+      <table style="margin-top:16px;">
+        <thead><tr><th>#</th><th>SKU / ชื่อสินค้า</th><th>ยอดขาย (บาท)</th><th>%GP สุทธิ</th><th>จำนวนขาย</th><th>%ตีกลับ</th></tr></thead>
+        <tbody id="bestSellerTable"></tbody>
+      </table>
+    </section>
+  </div>
+
+  <!-- CATEGORY -->
+  <div class="page" id="p-category">
+    <section>
+      <h2>หมวดหมู่สินค้าใหม่สะสม (คำนวณใหม่ตามอายุจริงแต่ละช่วง)</h2>
+      <div class="chart-box">
+        <div style="position:relative;height:220px;"><canvas id="categoryChart"></canvas></div>
+      </div>
+      <table style="margin-top:12px;">
+        <thead><tr><th>หมวดหมู่</th><th>ยอดขายสะสม (บาท)</th><th>% ของสินค้าใหม่สะสม</th></tr></thead>
+        <tbody id="categoryTable"></tbody>
+      </table>
+      <div class="callout blue" style="margin-top:12px;">
+        <b>เปลี่ยนจากที่เคยรายงาน:</b> หมวดหมู่นี้คำนวณใหม่โดยใช้เฉพาะ SKU ที่ยัง ≤120 วันจริงในแต่ละช่วง (SK044=Haircare, MK005-01PEACH/MK054-PeachPop/MK054-Colorless=Makeup, SK039=Skincare จนถึง 30 ก.ค.) — <b>Haircare นำ 79%</b>, Makeup 15%, Skincare 6% (เฉพาะช่วงที่ SK039 ยังไม่หมดอายุ) สัดส่วนกระจุกตัวที่ Haircare สูงกว่าที่เคยประเมินไว้เดิมมาก เพราะตัด SKU ที่หมดอายุจริงออกไปแล้ว
+      </div>
+    </section>
+    <section>
+      <h2>หมวดหมู่รายช่วงเวลา</h2>
+      <table>
+        <thead><tr><th>ช่วงเวลา</th><th>Haircare</th><th>Makeup</th><th>Skincare</th><th>Fragrance</th><th>รวมสินค้าใหม่</th></tr></thead>
+        <tbody id="categoryWeeklyTable"></tbody>
+      </table>
+    </section>
+  </div>
+
+  <!-- WEEKLY DETAIL -->
+  <div class="page" id="p-weekly">
+    <section>
+      <h2>รายละเอียดแต่ละช่วงเวลา (นิยามสินค้าใหม่ที่แก้ไขแล้ว)</h2>
+      <table>
+        <thead><tr><th>ช่วงเวลา</th><th>ยอดขายรวม</th><th>SK044</th><th>MK005-01PEACH</th><th>MK054-PeachPop</th><th>MK054-Colorless</th><th>SK039</th><th>FR001-005</th><th>รวมสินค้าใหม่</th><th>% สินค้าใหม่</th><th>สถานะ</th></tr></thead>
+        <tbody id="weeklyTable"></tbody>
+      </table>
+      <p style="font-size:12px;color:var(--text3);margin-top:10px;">หมายเหตุ: ช่วง 20 ก.ค.-2 ส.ค. เป็นไฟล์รวม 2 สัปดาห์ และ SK039 หมดอายุ 30 ก.ค. อยู่กลางช่วงพอดี — ใช้ตัวเลขประมาณการสัดส่วนวัน (10/14 วัน) เพราะไฟล์ export ไม่มีข้อมูลแยกรายวัน</p>
+    </section>
+  </div>
+
+  <!-- LIFECYCLE -->
+  <div class="page" id="p-lifecycle">
+    <section>
+      <h2>อายุสินค้าใหม่ทั้งหมด — นับ 120 วันจากวันเริ่มขายจริง</h2>
+      <table>
+        <thead><tr><th>SKU</th><th>สินค้า</th><th>บาร์โค้ด</th><th>เริ่มขาย</th><th>หมดอายุ</th><th>คงเหลือ (วัน)</th><th>สถานะ</th></tr></thead>
+        <tbody id="lifecycleFull"></tbody>
+      </table>
+      <div class="callout blue" style="margin-top:16px;">
+        FR001-FR005 กลับมาขายจริงแล้วตั้งแต่ 20 ส.ค. 69 (นับ 120 วันใหม่) — MS060-04 ยืนยันแล้วว่าเกิน 120 วัน ไม่นับเป็นสินค้าใหม่ แม้จะมียอดขาย ฿23,128 ในสัปดาห์ 17-23 ส.ค. ก็ตาม
+      </div>
+    </section>
+  </div>
+
+  <!-- WEEKLY BESTSELLERS -->
+  <div class="page" id="p-weeklybest">
+    <section>
+      <h2>สินค้าขายดี Top 10 <span class="h2-sub">แยกตามแต่ละสัปดาห์ (สีเขียว = สินค้าใหม่ ณ ช่วงนั้น)</span></h2>
+      <div class="tabs" id="weekPickerBar" style="background:var(--blue-soft);display:inline-flex;padding:4px;border-radius:999px;margin-bottom:20px;"></div>
+      <div class="chart-box">
+        <div style="position:relative;height:420px;"><canvas id="weeklyBestChart"></canvas></div>
+        <div class="legend">
+          <span><span class="dot" style="background:#c3c2b7;"></span>สินค้าเดิม</span>
+          <span><span class="dot" style="background:#5FA97D;"></span>สินค้าใหม่</span>
+        </div>
+      </div>
+      <table style="margin-top:16px;">
+        <thead><tr><th>#</th><th>SKU / ชื่อสินค้า</th><th>ยอดขาย (บาท)</th><th>%GP สุทธิ</th></tr></thead>
+        <tbody id="weeklyBestTable"></tbody>
+      </table>
+    </section>
+  </div>
+
+  <footer>Cosceutic — NPD KPI Dashboard | อ้างอิงจากไฟล์ export 8 รอบ 22 มิ.ย.–23 ส.ค. 2026 | สี CI: 1st-skincare #7ba8d8</footer>
+</div>
+
+<div class="modal-backdrop" id="skuModalBackdrop">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <h3 id="modalTitle">รายการสินค้า</h3>
+        <div class="modal-sub" id="modalSub"></div>
+      </div>
+      <button class="modal-close" id="modalCloseBtn">✕</button>
+    </div>
+    <div class="modal-body">
+      <table>
+        <thead><tr><th>SKU / ชื่อสินค้า</th><th>ยอดขาย (บาท)</th></tr></thead>
+        <tbody id="modalTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+document.getElementById('genDate').textContent = new Date().toLocaleDateString('th-TH', {year:'numeric', month:'long', day:'numeric'});
+document.getElementById('tabBar').addEventListener('click', (e)=>{
+  const btn = e.target.closest('.tab-btn'); if(!btn) return;
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(btn.dataset.page).classList.add('active');
+});
+function fmtBaht(v){ return '฿'+Math.round(v).toLocaleString(); }
+function shortName(n, len){ n=n.trim(); return n.length>len ? n.slice(0,len)+'…' : n; }
+
+const weeks = [
+  {label:'22-28 มิ.ย.', total:1249309.85, sk044:36715, peach:3818, pp:38925, cl:8963, sk039:20131, pct:8.69, status:'red'},
+  {label:'29มิ.ย.-5ก.ค.', total:1214509.35, sk044:153860, peach:4624, pp:27870, cl:7612, sk039:18576, pct:17.50, status:'red'},
+  {label:'6-12 ก.ค.', total:1745379.21, sk044:218185, peach:6134, pp:21306, cl:7728, sk039:27993, pct:16.12, status:'red'},
+  {label:'13-19 ก.ค.', total:1705424.11, sk044:348674, peach:8370, pp:19371, cl:5346, sk039:19509, pct:23.53, status:'green'},
+  {label:'20ก.ค.-2ส.ค.*', total:2677045.13, sk044:275564, peach:28051, pp:24427, cl:4479, sk039:27442, pct:13.45, status:'red'},
+  {label:'3-9 ส.ค.', total:2175403.44, sk044:272145.31, peach:25124.40, pp:13298.78, cl:3485.07, sk039:0, pct:14.44, status:'red'},
+  {label:'10-16 ส.ค.', total:1410633.70, sk044:190164.47, peach:14460.09, pp:9589.06, cl:1871.10, sk039:0, pct:15.32, status:'red'},
+  {label:'17-23 ส.ค.', total:1326960.52, sk044:55610.26, peach:14391.00, pp:7697.69, cl:1427.47, sk039:0, fr:2236.67,
+    frItems:[{code:'FR001',name:'Perfume Spray (Airy Sky)',sales:613.63},{code:'FR002',name:'Perfume Spray (Sencha)',sales:265.30},{code:'FR003',name:'Perfume Spray (Flower Princess)',sales:539.57},{code:'FR005',name:'Perfume Spray (Spring Blossom)',sales:818.17}],
+    pct:6.13, status:'red'},
+];
+
+const skuNames = {
+  'SK044':'Gentle Daily Care Hydrating Shampoo',
+  'MK005-01PEACH':'Mild First Creamy Lip #Peach Girl',
+  'MK054-PeachPop':'Lollipop Moisture Balm #Peach Pop',
+  'MK054-Colorless':'Lollipop Moisture Balm #Colorless',
+  'SK039':'Mild First Armpit Care Roll-On',
+};
+
+function getCategoryItems(w, category){
+  if(category==='Haircare') return w.sk044 ? [{code:'SK044', name:skuNames['SK044'], sales:w.sk044}] : [];
+  if(category==='Makeup'){
+    const items=[];
+    if(w.peach) items.push({code:'MK005-01PEACH', name:skuNames['MK005-01PEACH'], sales:w.peach});
+    if(w.pp) items.push({code:'MK054-PeachPop', name:skuNames['MK054-PeachPop'], sales:w.pp});
+    if(w.cl) items.push({code:'MK054-Colorless', name:skuNames['MK054-Colorless'], sales:w.cl});
+    return items.sort((a,b)=>b.sales-a.sales);
+  }
+  if(category==='Skincare') return w.sk039 ? [{code:'SK039', name:skuNames['SK039'], sales:w.sk039}] : [];
+  if(category==='Fragrance') return w.frItems || (w.fr ? [{code:'FR', name:'Perfume Spray (รวม)', sales:w.fr}] : []);
+  return [];
+}
+
+function openSkuModal(title, sub, items){
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalSub').textContent = sub;
+  const tbody = document.getElementById('modalTableBody');
+  tbody.innerHTML = '';
+  let total = 0;
+  items.forEach(it=>{
+    total += it.sales;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${it.code} — ${it.name}</td><td>${fmtBaht(it.sales)}</td>`;
+    tbody.appendChild(tr);
+  });
+  const trTotal = document.createElement('tr');
+  trTotal.className = 'modal-total-row';
+  trTotal.innerHTML = `<td>รวม</td><td>${fmtBaht(total)}</td>`;
+  tbody.appendChild(trTotal);
+  document.getElementById('skuModalBackdrop').classList.add('open');
+}
+document.getElementById('modalCloseBtn').addEventListener('click', ()=>{
+  document.getElementById('skuModalBackdrop').classList.remove('open');
+});
+document.getElementById('skuModalBackdrop').addEventListener('click', (e)=>{
+  if(e.target.id==='skuModalBackdrop') document.getElementById('skuModalBackdrop').classList.remove('open');
+});
+document.addEventListener('keydown', (e)=>{
+  if(e.key==='Escape') document.getElementById('skuModalBackdrop').classList.remove('open');
+});
+
+new Chart(document.getElementById('trendChart'), {
+  data: { labels: weeks.map(w=>w.label),
+    datasets: [
+      { type:'bar', label:'% สินค้าใหม่', data:weeks.map(w=>w.pct),
+        backgroundColor: weeks.map(w=>w.status==='green'?'#5FA97D':'#c53a3a'), borderRadius:4, maxBarThickness:48 },
+      { type:'line', label:'target 20%', data:weeks.map(()=>20), borderColor:'#5b6472', borderDash:[6,4], pointRadius:0, borderWidth:2 }
+    ] },
+  options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+    scales:{ y:{beginAtZero:true,max:30,ticks:{callback:(v)=>v+'%',color:'#9aa2b1'},grid:{color:'#e7eaf0'}}, x:{ticks:{color:'#9aa2b1'},grid:{display:false}} } }
+});
+
+const weeklyTbody = document.getElementById('weeklyTable');
+weeks.forEach(w=>{
+  const newTotal = w.sk044+w.peach+w.pp+w.cl+w.sk039+(w.fr||0);
+  const tr = document.createElement('tr');
+  tr.className = w.status==='green' ? 'risk-green' : 'risk-red';
+  const badge = w.status==='green' ? '<span class="flag-badge flag-green">ผ่านเป้า</span>' : '<span class="flag-badge flag-red">ไม่ผ่านเป้า</span>';
+  tr.innerHTML = `<td>${w.label}</td><td>${fmtBaht(w.total)}</td><td>${fmtBaht(w.sk044)}</td><td>${fmtBaht(w.peach)}</td><td>${fmtBaht(w.pp)}</td><td>${fmtBaht(w.cl)}</td><td>${w.sk039?fmtBaht(w.sk039):'—'}</td><td>${w.fr?fmtBaht(w.fr):'—'}</td><td>${fmtBaht(newTotal)}</td><td>${w.pct.toFixed(1)}%</td><td style="text-align:left;">${badge}</td>`;
+  weeklyTbody.appendChild(tr);
+});
+
+/* Category */
+const categories = [
+  {name:'Haircare', sales:1550918, pct:78.5},
+  {name:'Makeup', sales:308368, pct:15.6},
+  {name:'Skincare', sales:113651, pct:5.8},
+  {name:'Fragrance', sales:2237, pct:0.1},
+];
+const catColors = {'Haircare':'#b8c4e8','Makeup':'#f08ca4','Skincare':'#8fdba0','Fragrance':'#7dd8c8'};
+new Chart(document.getElementById('categoryChart'), {
+  type:'doughnut',
+  data:{ labels:categories.map(c=>c.name+' ('+c.pct.toFixed(1)+'%)'),
+         datasets:[{data:categories.map(c=>c.sales), backgroundColor:categories.map(c=>catColors[c.name])}] },
+  options:{ responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{position:'right', labels:{color:'#5b6472', font:{size:11}}}, tooltip:{callbacks:{label:(ctx)=>fmtBaht(ctx.parsed)}}} }
+});
+const catTbody = document.getElementById('categoryTable');
+categories.forEach(c=>{
+  const tr=document.createElement('tr');
+  tr.innerHTML=`<td>${c.name}</td><td class="clickable" data-catall="${c.name}">${c.sales.toLocaleString()}</td><td>${c.pct.toFixed(1)}%</td>`;
+  catTbody.appendChild(tr);
+});
+catTbody.addEventListener('click', (e)=>{
+  const td = e.target.closest('td.clickable'); if(!td) return;
+  const cat = td.dataset.catall;
+  const merged = {};
+  weeks.forEach(w=>{
+    getCategoryItems(w, cat).forEach(it=>{
+      if(!merged[it.code]) merged[it.code] = {code:it.code, name:it.name, sales:0};
+      merged[it.code].sales += it.sales;
+    });
+  });
+  const items = Object.values(merged).sort((a,b)=>b.sales-a.sales);
+  openSkuModal(`${cat} — สะสมทั้ง 8 ช่วง`, 'รวมยอดขายแต่ละ SKU ตลอด 22 มิ.ย.–23 ส.ค.', items);
+});
+const catWeeklyTbody = document.getElementById('categoryWeeklyTable');
+weeks.forEach((w,wi)=>{
+  const haircare=w.sk044, makeup=w.peach+w.pp+w.cl, skincare=w.sk039, fragrance=w.fr||0, newTotal=haircare+makeup+skincare+fragrance;
+  const tr=document.createElement('tr');
+  const cell = (val, category) => val
+    ? `<td class="clickable" data-week="${wi}" data-cat="${category}">${fmtBaht(val)}</td>`
+    : `<td>—</td>`;
+  tr.innerHTML=`<td>${w.label}</td>${cell(haircare,'Haircare')}${cell(makeup,'Makeup')}${cell(skincare,'Skincare')}${cell(fragrance,'Fragrance')}<td>${fmtBaht(newTotal)}</td>`;
+  catWeeklyTbody.appendChild(tr);
+});
+catWeeklyTbody.addEventListener('click', (e)=>{
+  const td = e.target.closest('td.clickable'); if(!td) return;
+  const wi = parseInt(td.dataset.week), cat = td.dataset.cat;
+  const w = weeks[wi];
+  const items = getCategoryItems(w, cat);
+  openSkuModal(`${cat} — ${w.label}`, 'รายการสินค้าที่ประกอบเป็นยอดหมวดนี้', items);
+});
+
+/* Best sellers (portfolio, 3-week cumulative, unchanged data) */
+const bestSellers = [
+  {code:'SK001', name:'Gentle Daily Care Shampoo 450ml', sales:461083, gp:67.5, qty:2241, ret:0.2, isNew:false},
+  {code:'SK044', name:'Gentle Daily Care Hydrating Shampoo', sales:408761, gp:61.7, qty:1950, ret:0.0, isNew:true},
+  {code:'SK030', name:'Kids and Tweens Vitamin Face Cream 30g', sales:365046, gp:60.8, qty:1270, ret:0.2, isNew:false},
+  {code:'SK031', name:'Kids and Tweens Hybrid Sunscreen SPF50+', sales:221490, gp:35.1, qty:897, ret:0.3, isNew:false},
+  {code:'SK029', name:'Kids and Tweens Vitamin Facial Wash 100g', sales:204113, gp:66.6, qty:850, ret:0.1, isNew:false},
+  {code:'SK002', name:'Gentle Daily Care Shampoo #Refill', sales:194758, gp:72.2, qty:1021, ret:0.2, isNew:false},
+  {code:'SK034', name:'Gentle Boy Daily Care Shampoo 450ml', sales:193674, gp:71.0, qty:822, ret:0.1, isNew:false},
+  {code:'SK042', name:'Gentle Daily Care Conditioner 150ml', sales:175255, gp:62.8, qty:799, ret:0.4, isNew:false},
+  {code:'SK003', name:'Gentle Daily Hair Care Serum 70g', sales:128449, gp:67.9, qty:588, ret:0.0, isNew:false},
+  {code:'SK035', name:'Kids and Tweens Vitamin Body Lotion 250g', sales:89280, gp:54.6, qty:206, ret:0.0, isNew:false},
+  {code:'MK054-PeachPop', name:'Lollipop Moisture Balm #Peach Pop', sales:88101, gp:77.7, qty:452, ret:0.2, isNew:true},
+  {code:'MK005-C4STRAWBERRY', name:'Mild First Creamy Lip #Strawberry', sales:72902, gp:69.5, qty:445, ret:0.2, isNew:false},
+  {code:'SK039', name:'Mild First Armpit Care Roll-On', sales:66700, gp:71.2, qty:312, ret:0.3, isNew:true},
+  {code:'SK032', name:'Kids and Tweens Vitamin Body Lotion 100g', sales:65231, gp:63.5, qty:259, ret:0.0, isNew:false},
+  {code:'MS062-5', name:'The Memory Makeup Set', sales:52130, gp:41.8, qty:39, ret:0.0, isNew:false},
+  {code:'MK001-02WARMTONE-UM', name:'Mild First Pressed Powder (Unicorn Mermaid)', sales:45694, gp:41.7, qty:196, ret:0.5, isNew:false},
+  {code:'MK050-BG-SET', name:'Mild First Eyeshadow Ribbon Whirl', sales:45463, gp:77.4, qty:124, ret:0.0, isNew:false},
+  {code:'SK037-Spring', name:'Kids&Teens Dazzling Shower Gel', sales:45448, gp:65.4, qty:246, ret:0.0, isNew:false},
+  {code:'MK044-Cool', name:'Mild Mini Pocket Blush #Cool', sales:43929, gp:76.3, qty:161, ret:0.6, isNew:false},
+  {code:'MK018-T1PINK', name:'Mild First Tint Lip Balm 3.5g', sales:42080, gp:87.9, qty:215, ret:0.0, isNew:false},
+];
+new Chart(document.getElementById('bestSellerChart'), {
+  type:'bar',
+  data:{ labels:bestSellers.map(r=>r.code+' · '+shortName(r.name,32)),
+         datasets:[{data:bestSellers.map(r=>r.sales), backgroundColor:bestSellers.map(r=>r.isNew?'#5FA97D':'#c3c2b7'), borderRadius:4}] },
+  options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{callbacks:{label:(ctx)=>fmtBaht(ctx.parsed.x)}}},
+    scales:{ x:{beginAtZero:true, ticks:{callback:(v)=>'฿'+(v/1000)+'k',color:'#9aa2b1'}, grid:{color:'#e7eaf0'}},
+             y:{ticks:{color:'#9aa2b1', font:{size:11}}, grid:{display:false}} } }
+});
+const bsTbody = document.getElementById('bestSellerTable');
+bestSellers.forEach((r,i)=>{
+  const tr=document.createElement('tr');
+  const newBadge = r.isNew ? '<span class="badge-new">ใหม่</span>' : '';
+  tr.innerHTML=`<td>${i+1}</td><td>${r.code} — ${r.name}${newBadge}</td><td>${r.sales.toLocaleString()}</td><td>${r.gp.toFixed(1)}%</td><td>${r.qty.toLocaleString()}</td><td>${r.ret.toFixed(1)}%</td>`;
+  bsTbody.appendChild(tr);
+});
+
+/* Lifecycle */
+const lifecycle = [
+  {code:'SK044', name:'Gentle Daily Care Hydrating Shampoo', barcode:'8859769905970', start:'5 พ.ค. 69', expiry:'2 ก.ย. 69', remain:'16 วัน', status:'active'},
+  {code:'MK005-01PEACH', name:'Mild First Creamy Lip #Peach Girl', barcode:'8859769906250', start:'5 พ.ค. 69', expiry:'2 ก.ย. 69', remain:'16 วัน', status:'active'},
+  {code:'MK054-PeachPop', name:'Lollipop Moisture Balm #Peach Pop', barcode:'—', start:'7 พ.ค. 69', expiry:'4 ก.ย. 69', remain:'18 วัน', status:'active'},
+  {code:'MK054-Colorless', name:'Lollipop Moisture Balm #Colorless', barcode:'—', start:'7 พ.ค. 69', expiry:'4 ก.ย. 69', remain:'18 วัน', status:'active'},
+  {code:'FR001', name:'Perfume Spray (Airy Sky)', barcode:'8859769906380', start:'20 ส.ค. 69', expiry:'18 ธ.ค. 69', remain:'117 วัน', status:'active'},
+  {code:'FR002', name:'Perfume Spray (Sencha)', barcode:'8859769906397', start:'20 ส.ค. 69', expiry:'18 ธ.ค. 69', remain:'117 วัน', status:'active'},
+  {code:'FR003', name:'Perfume Spray (Flower Princess)', barcode:'8859769906403', start:'20 ส.ค. 69', expiry:'18 ธ.ค. 69', remain:'117 วัน', status:'active'},
+  {code:'FR004', name:'Perfume Spray (Snow Cotton)', barcode:'8859769906410', start:'20 ส.ค. 69', expiry:'18 ธ.ค. 69', remain:'117 วัน', status:'active'},
+  {code:'FR005', name:'Perfume Spray (Spring Blossom)', barcode:'8859769906427', start:'20 ส.ค. 69', expiry:'18 ธ.ค. 69', remain:'117 วัน', status:'active'},
+  {code:'MS060-04', name:'Petite Pirouette Makeup Set [Kitty]', barcode:'—', start:'เกิน 120 วันแล้ว', expiry:'—', remain:'ไม่ใช่สินค้าใหม่ (ยืนยันแล้ว)', status:'expired'},
+  {code:'SK039', name:'Mild First Armpit Care Roll-On', barcode:'—', start:'1 เม.ย. 69', expiry:'30 ก.ค. 69', remain:'หมดอายุแล้ว 18 วัน', status:'expired'},
+  {code:'SK042', name:'Gentle Daily Care Conditioner', barcode:'—', start:'1 ก.พ. 69', expiry:'1 มิ.ย. 69', remain:'หมดอายุแล้ว 77 วัน', status:'expired'},
+  {code:'SK037-Spring', name:'Dazzling Shower Gel', barcode:'—', start:'1 ก.พ. 69', expiry:'1 มิ.ย. 69', remain:'หมดอายุแล้ว 77 วัน', status:'expired'},
+  {code:'MK022-07STARLIGHT', name:'Wonder Glitter #Starlight Romance', barcode:'—', start:'1 ก.พ. 69', expiry:'1 มิ.ย. 69', remain:'หมดอายุแล้ว 77 วัน', status:'expired'},
+  {code:'MK045-CHERRY', name:'Cherrie Pocket Lip & Blush #Cherry', barcode:'—', start:'1 ก.พ. 69', expiry:'1 มิ.ย. 69', remain:'หมดอายุแล้ว 77 วัน', status:'expired'},
+  {code:'MK045-PINK', name:'Cherrie Pocket Lip & Blush #Pink', barcode:'—', start:'1 ก.พ. 69', expiry:'1 มิ.ย. 69', remain:'หมดอายุแล้ว 77 วัน', status:'expired'},
+  {code:'SK041', name:'Wonder Bubble Bath (Sakura)', barcode:'—', start:'1 ก.พ. 69', expiry:'1 มิ.ย. 69', remain:'หมดอายุแล้ว 77 วัน', status:'expired'},
+];
+function statusBadge(s){
+  if(s==='active') return '<span class="flag-badge flag-green">Active</span>';
+  if(s==='paused') return '<span class="flag-badge flag-paused">Paused</span>';
+  return '<span class="flag-badge flag-red">Expired</span>';
+}
+const lcSummary = document.getElementById('lifecycleSummary');
+lifecycle.filter(l=>l.status!=='expired').forEach(l=>{
+  const tr=document.createElement('tr');
+  if(l.status==='paused') tr.className='risk-paused';
+  tr.innerHTML=`<td>${l.code}</td><td>${l.name}</td><td>${l.start}</td><td>${l.expiry}</td><td>${l.remain}</td><td style="text-align:left;">${statusBadge(l.status)}</td>`;
+  lcSummary.appendChild(tr);
+});
+const lcFull = document.getElementById('lifecycleFull');
+lifecycle.forEach(l=>{
+  const tr=document.createElement('tr');
+  if(l.status==='paused') tr.className='risk-paused';
+  if(l.status==='expired') tr.className='risk-red';
+  tr.innerHTML=`<td>${l.code}</td><td>${l.name}</td><td>${l.barcode}</td><td>${l.start}</td><td>${l.expiry}</td><td>${l.remain}</td><td style="text-align:left;">${statusBadge(l.status)}</td>`;
+  lcFull.appendChild(tr);
+});
+
+/* ---------- WEEKLY BESTSELLERS (Top 10 per period) ---------- */
+const newSet = new Set(['SK044','MK005-01PEACH','MK054-PeachPop','MK054-Colorless','SK039']);
+const weeklyBest = [
+  { label:'22-28 มิ.ย.', top:[
+    {code:'SK001',name:'Gentle Daily Care Shampoo 450ml',sales:146117,gp:66.1},
+    {code:'SK030',name:'Kids and Tweens Vitamin Face Cream',sales:117012,gp:59.3},
+    {code:'SK031',name:'Kids and Tweens Hybrid Sunscreen',sales:83500,gp:35.4},
+    {code:'SK002',name:'Gentle Daily Care Shampoo #Refill',sales:67881,gp:71.2},
+    {code:'SK029',name:'Kids and Tweens Vitamin Facial Wash',sales:61332,gp:66.1},
+    {code:'SK042',name:'Gentle Daily Care Conditioner',sales:51574,gp:62.3},
+    {code:'SK034',name:'Gentle Boy Daily Care Shampoo',sales:44759,gp:69.3},
+    {code:'SK003',name:'Gentle Daily Hair Care Serum',sales:41092,gp:66.7},
+    {code:'MK054-PeachPop',name:'Lollipop Moisture Balm #Peach Pop',sales:38925,gp:77.6},
+    {code:'SK044',name:'Gentle Daily Care Hydrating Shampoo',sales:36715,gp:59.5},
+  ]},
+  { label:'29มิ.ย.-5ก.ค.', top:[
+    {code:'SK044',name:'Gentle Daily Care Hydrating Shampoo',sales:153860,gp:61.8},
+    {code:'SK001',name:'Gentle Daily Care Shampoo 450ml',sales:132652,gp:68.1},
+    {code:'SK030',name:'Kids and Tweens Vitamin Face Cream',sales:100845,gp:61.0},
+    {code:'SK031',name:'Kids and Tweens Hybrid Sunscreen',sales:62464,gp:36.2},
+    {code:'SK034',name:'Gentle Boy Daily Care Shampoo',sales:56107,gp:71.2},
+    {code:'SK042',name:'Gentle Daily Care Conditioner',sales:51833,gp:63.0},
+    {code:'SK029',name:'Kids and Tweens Vitamin Facial Wash',sales:51645,gp:66.9},
+    {code:'SK002',name:'Gentle Daily Care Shampoo #Refill',sales:47155,gp:73.2},
+    {code:'SK003',name:'Gentle Daily Hair Care Serum',sales:33571,gp:68.5},
+    {code:'MK054-PeachPop',name:'Lollipop Moisture Balm #Peach Pop',sales:27870,gp:78.3},
+  ]},
+  { label:'6-12 ก.ค.', top:[
+    {code:'SK044',name:'Gentle Daily Care Hydrating Shampoo',sales:218185,gp:61.9},
+    {code:'SK001',name:'Gentle Daily Care Shampoo 450ml',sales:182314,gp:68.1},
+    {code:'SK030',name:'Kids and Tweens Vitamin Face Cream',sales:147189,gp:61.7},
+    {code:'SK034',name:'Gentle Boy Daily Care Shampoo',sales:92807,gp:71.7},
+    {code:'SK029',name:'Kids and Tweens Vitamin Facial Wash',sales:91136,gp:66.7},
+    {code:'SK002',name:'Gentle Daily Care Shampoo #Refill',sales:79721,gp:72.5},
+    {code:'SK031',name:'Kids and Tweens Hybrid Sunscreen',sales:75526,gp:33.7},
+    {code:'SK042',name:'Gentle Daily Care Conditioner',sales:71848,gp:62.9},
+    {code:'SK003',name:'Gentle Daily Hair Care Serum',sales:53787,gp:68.4},
+    {code:'SK035',name:'Kids and Tweens Vitamin Body Lotion 250g',sales:39196,gp:52.8},
+  ]},
+  { label:'13-19 ก.ค.', top:[
+    {code:'SK044',name:'Gentle Daily Care Hydrating Shampoo',sales:348674,gp:56.7},
+    {code:'SK001',name:'Gentle Daily Care Shampoo 450ml',sales:199944,gp:66.9},
+    {code:'SK030',name:'Kids and Tweens Vitamin Face Cream',sales:144339,gp:63.0},
+    {code:'SK034',name:'Gentle Boy Daily Care Shampoo',sales:107579,gp:70.9},
+    {code:'SK031',name:'Kids and Tweens Hybrid Sunscreen',sales:72688,gp:36.4},
+    {code:'SK029',name:'Kids and Tweens Vitamin Facial Wash',sales:68140,gp:68.5},
+    {code:'SK042',name:'Gentle Daily Care Conditioner',sales:62469,gp:61.7},
+    {code:'SK002',name:'Gentle Daily Care Shampoo #Refill',sales:49968,gp:73.4},
+    {code:'SK003',name:'Gentle Daily Hair Care Serum',sales:37470,gp:69.1},
+    {code:'MK005-C4STRAWBERRY',name:'Mild First Creamy Lip #Strawberry',sales:34971,gp:66.4},
+  ]},
+  { label:'20ก.ค.-2ส.ค.', top:[
+    {code:'SK001',name:'Gentle Daily Care Shampoo 450ml',sales:411760,gp:70.0},
+    {code:'SK044',name:'Gentle Daily Care Hydrating Shampoo',sales:275564,gp:62.1},
+    {code:'SK030',name:'Kids and Tweens Vitamin Face Cream',sales:224401,gp:61.9},
+    {code:'SK034',name:'Gentle Boy Daily Care Shampoo',sales:153488,gp:71.3},
+    {code:'SK029',name:'Kids and Tweens Vitamin Facial Wash',sales:127892,gp:68.2},
+    {code:'SK031',name:'Kids and Tweens Hybrid Sunscreen',sales:116999,gp:37.7},
+    {code:'SK002',name:'Gentle Daily Care Shampoo #Refill',sales:109272,gp:72.4},
+    {code:'SK042',name:'Gentle Daily Care Conditioner',sales:107556,gp:64.4},
+    {code:'SK003',name:'Gentle Daily Hair Care Serum',sales:91044,gp:67.3},
+    {code:'MK002-00WHITE-RW',name:'Mild First Pressed Powder #White',sales:62318,gp:57.0},
+  ]},
+  { label:'3-9 ส.ค.', top:[
+    {code:'SK001',name:'Gentle Daily Care Shampoo 450ml',sales:338484,gp:70.6},
+    {code:'SK044',name:'Gentle Daily Care Hydrating Shampoo',sales:272145,gp:62.3},
+    {code:'SK030',name:'Kids and Tweens Vitamin Face Cream',sales:154542,gp:61.5},
+    {code:'SK034',name:'Gentle Boy Daily Care Shampoo',sales:100589,gp:71.6},
+    {code:'SK042',name:'Gentle Daily Care Conditioner',sales:93696,gp:62.5},
+    {code:'SK002',name:'Gentle Daily Care Shampoo #Refill',sales:87245,gp:72.2},
+    {code:'SK029',name:'Kids and Tweens Vitamin Facial Wash',sales:83180,gp:66.9},
+    {code:'SK031',name:'Kids and Tweens Hybrid Sunscreen',sales:73548,gp:34.9},
+    {code:'SK003',name:'Gentle Daily Hair Care Serum',sales:56606,gp:66.4},
+    {code:'MK002-00WHITE-RW',name:'Mild First Pressed Powder #White',sales:56058,gp:59.1},
+  ]},
+  { label:'10-16 ส.ค.', top:[
+    {code:'SK001',name:'Gentle Daily Care Shampoo 450ml',sales:256545,gp:73.0},
+    {code:'SK044',name:'Gentle Daily Care Hydrating Shampoo',sales:190164,gp:64.1},
+    {code:'SK030',name:'Kids and Tweens Vitamin Face Cream',sales:102047,gp:63.1},
+    {code:'SK042',name:'Gentle Daily Care Conditioner',sales:61594,gp:65.6},
+    {code:'SK002',name:'Gentle Daily Care Shampoo #Refill',sales:58816,gp:74.4},
+    {code:'SK029',name:'Kids and Tweens Vitamin Facial Wash',sales:51835,gp:66.4},
+    {code:'SK003',name:'Gentle Daily Hair Care Serum',sales:46545,gp:68.2},
+    {code:'SK031',name:'Kids and Tweens Hybrid Sunscreen',sales:41022,gp:34.3},
+    {code:'MK002-00WHITE-RW',name:'Mild First Pressed Powder #White',sales:26630,gp:58.5},
+    {code:'MK005-C4STRAWBERRY',name:'Mild First Creamy Lip #Strawberry',sales:25473,gp:66.0},
+  ]},
+  { label:'17-23 ส.ค.', top:[
+    {code:'SK001',name:'Gentle Daily Care Shampoo 450ml',sales:209853,gp:72.9},
+    {code:'SK030',name:'Kids and Tweens Vitamin Face Cream',sales:110230,gp:64.8},
+    {code:'SK034',name:'Gentle Boy Daily Care Shampoo',sales:64378,gp:73.7},
+    {code:'SK031',name:'Kids and Tweens Hybrid Sunscreen',sales:56065,gp:36.3},
+    {code:'SK044',name:'Gentle Daily Care Hydrating Shampoo',sales:55610,gp:64.5},
+    {code:'SK002',name:'Gentle Daily Care Shampoo #Refill',sales:55219,gp:74.9},
+    {code:'SK042',name:'Gentle Daily Care Conditioner',sales:53377,gp:66.2},
+    {code:'SK029',name:'Kids and Tweens Vitamin Facial Wash',sales:50695,gp:66.5},
+    {code:'SK003',name:'Gentle Daily Hair Care Serum',sales:37319,gp:69.6},
+    {code:'MK001-01COOLTONE-UM',name:'Mild First Pressed Powder (Unicorn Mermaid)',sales:31490,gp:50.8},
+  ]},
+];
+let weeklyBestChart = null;
+function renderWeeklyBest(idx){
+  const w = weeklyBest[idx];
+  document.querySelectorAll('#weekPickerBar button').forEach((b,i)=>{
+    const active = i===idx;
+    b.style.background = active ? '#fff' : 'transparent';
+    b.style.color = active ? 'var(--blue-dark)' : 'rgba(255,255,255,0.85)';
+    b.style.boxShadow = active ? 'var(--shadow-sm)' : 'none';
+  });
+  if(weeklyBestChart) weeklyBestChart.destroy();
+  weeklyBestChart = new Chart(document.getElementById('weeklyBestChart'), {
+    type:'bar',
+    data:{ labels:w.top.map(r=>r.code+' · '+shortName(r.name,28)),
+           datasets:[{data:w.top.map(r=>r.sales), backgroundColor:w.top.map(r=>newSet.has(r.code)?'#5FA97D':'#c3c2b7'), borderRadius:4}] },
+    options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false}, tooltip:{callbacks:{label:(ctx)=>fmtBaht(ctx.parsed.x)+' · GP '+w.top[ctx.dataIndex].gp.toFixed(1)+'%'}}},
+      scales:{ x:{beginAtZero:true, ticks:{callback:(v)=>'฿'+(v/1000)+'k',color:'#9aa2b1'}, grid:{color:'#e7eaf0'}},
+               y:{ticks:{color:'#9aa2b1', font:{size:11}}, grid:{display:false}} } }
+  });
+  const tbody = document.getElementById('weeklyBestTable');
+  tbody.innerHTML = '';
+  w.top.forEach((r,i)=>{
+    const tr = document.createElement('tr');
+    const badge = newSet.has(r.code) ? '<span class="badge-new">ใหม่</span>' : '';
+    tr.innerHTML = `<td>${i+1}</td><td>${r.code} — ${r.name}${badge}</td><td>${r.sales.toLocaleString()}</td><td>${r.gp.toFixed(1)}%</td>`;
+    tbody.appendChild(tr);
+  });
+}
+const weekPickerBar = document.getElementById('weekPickerBar');
+weeklyBest.forEach((w,i)=>{
+  const btn = document.createElement('button');
+  btn.textContent = w.label;
+  btn.style.cssText = 'background:transparent;border:none;padding:7px 14px;font-family:Sarabun,sans-serif;font-size:12.5px;font-weight:600;color:rgba(255,255,255,0.85);cursor:pointer;border-radius:999px;white-space:nowrap;';
+  btn.addEventListener('click', ()=>renderWeeklyBest(i));
+  weekPickerBar.appendChild(btn);
+});
+renderWeeklyBest(weeklyBest.length-1);
+</script>
+</body>
+</html>

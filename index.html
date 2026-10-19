@@ -106,6 +106,8 @@
   .modal-total-row td{font-weight:700;background:var(--blue-soft);}
   footer{font-size:11px;color:var(--text3);text-align:center;margin-top:36px;padding-top:20px;border-top:1px solid var(--border);}
   @media (max-width:640px){ .wrap{padding:0 16px 60px;} .card p.value{font-size:21px;} }
+  .tb-up{background:#c3e6d3;color:#1c5e3d;} .tb-rebound{background:#dff1e6;color:#2a7a52;} .tb-flat{background:#e6e8ee;color:#4a5365;}
+  .tb-slow{background:#f6d49a;color:#6b4106;} .tb-down{background:#f4c2c2;color:#7a1f1f;} .tb-new{background:#d6e4f5;color:#2f5f94;}
 </style>
 </head>
 <body>
@@ -126,13 +128,14 @@
         <button class="tab-btn" data-page="p-bestseller">สินค้าขายดี</button>
         <button class="tab-btn" data-page="p-category">หมวดหมู่</button>
         <button class="tab-btn" data-page="p-weekly">รายสัปดาห์</button>
+        <button class="tab-btn" data-page="p-skutrend">แนวโน้มรายสินค้า</button>
         <button class="tab-btn" data-page="p-lifecycle">อายุสินค้าใหม่</button>
         <button class="tab-btn" data-page="p-weeklybest">ขายดีรายสัปดาห์</button>
       </div>
     </div>
   </div>
 </div>
-<div class="notice-banner">📢 ข้อมูล ณ 22 มิ.ย. – 11 ต.ค. 2026 · นิยามสินค้าใหม่: อายุ ≤120 วันจากวันเริ่มขายจริง (คำนวณแยกตามช่วงเวลาจริง) · อัปเดต <span id="genDate"></span></div>
+<div class="notice-banner">📢 ข้อมูล ณ 22 มิ.ย. – 18 ต.ค. 2026 · นิยามสินค้าใหม่: อายุ ≤120 วันจากวันเริ่มขายจริง (คำนวณแยกตามช่วงเวลาจริง) · อัปเดต <span id="genDate"></span></div>
 <div class="wrap">
 
   <!-- OVERVIEW -->
@@ -141,15 +144,15 @@
       <b>นิยามที่ใช้:</b> สินค้าใหม่ต้องมีสถานะ ≤120 วันจากวันเริ่มขายจริง<b>ในช่วงเวลานั้นๆ</b> ไม่ใช่ list ตายตัว — SKU แต่ละตัวเข้า/ออกจากการนับตามอายุจริงของมันเอง (เช่น SK039 นับใน 22มิ.ย.-19ก.ค. เพราะยังไม่ครบ 120 วัน แต่หลุดจากการนับตั้งแต่ 30 ก.ค. เป็นต้นไป)
     </div>
     <section>
-      <h2>A. KPI Headline (สะสม 15 ช่วง — 22 มิ.ย.–11 ต.ค.)</h2>
+      <h2>A. KPI Headline (สะสม 16 ช่วง — 22 มิ.ย.–18 ต.ค.)</h2>
       <div class="cards">
-        <div class="card"><p class="label">ยอดขายรวมทั้งพอร์ต</p><p class="value">฿24,349,957</p></div>
-        <div class="card"><p class="label">ยอดขายสินค้าใหม่ (ตามอายุจริง)</p><p class="value">฿2,578,589</p></div>
-        <div class="card bad"><p class="label">% สินค้าใหม่ (target 20%)</p><p class="value">10.6%</p></div>
-        <div class="card bad"><p class="label">Gap ต่อ target</p><p class="value">-฿2,291,402</p></div>
+        <div class="card"><p class="label">ยอดขายรวมทั้งพอร์ต</p><p class="value">฿25,763,218</p></div>
+        <div class="card"><p class="label">ยอดขายสินค้าใหม่ (ตามอายุจริง)</p><p class="value">฿2,753,098</p></div>
+        <div class="card bad"><p class="label">% สินค้าใหม่ (target 20%)</p><p class="value">10.7%</p></div>
+        <div class="card bad"><p class="label">Gap ต่อ target</p><p class="value">-฿2,399,546</p></div>
       </div>
       <div class="callout warn">
-        <b>สถานะ:</b> หลุดเป้า 20% ต่อเนื่อง 14 จาก 15 ช่วงเวลา (ผ่านแค่ช่วง 13-19 ก.ค. ที่ 23.5%) — ช่วง 5 สัปดาห์หลังสุด % สินค้าใหม่ขยับขึ้นจาก 3.6% → 6.8% → 6.4% → 6.3% → <b>8.4%</b> (สัปดาห์ล่าสุดสูงสุดในรอบ 8 สัปดาห์) หลังมีสินค้าใหม่ 19 SKU ในพอร์ต แต่ยังห่างเป้า 20% มาก หมายเหตุ: ตัวเลขสัปดาห์ 7-13 และ 14-20 ก.ย. ถูกปรับย้อนหลังเพื่อรวม SK046/SK056/MK057 ที่เริ่มขาย 9 ก.ย. (MK057 สัปดาห์ 7-13 ก.ย. ปรับสัดส่วน 5/7 วัน เพราะไฟล์ไม่มีข้อมูลรายวัน และยอด ฿16,634 ในสัปดาห์ 31 ส.ค.-6 ก.ย. ที่ขายก่อนวันเริ่มไม่นับ) MK063 และ SK047 เปิดขาย 10 ต.ค. จึงมียอดแค่ 2 วันในสัปดาห์นี้
+        <b>สถานะ:</b> หลุดเป้า 20% ต่อเนื่อง 15 จาก 16 ช่วงเวลา (ผ่านแค่ช่วง 13-19 ก.ค. ที่ 23.5%) — ช่วง 6 สัปดาห์หลังสุด % สินค้าใหม่ขยับขึ้นจาก 3.6% → 6.8% → 6.4% → 6.3% → 8.5% → <b>12.4%</b> (สัปดาห์ล่าสุดสูงสุดตั้งแต่ 10-16 ส.ค.) หลังมีสินค้าใหม่ 19 SKU ในพอร์ต แต่ส่วนหนึ่งเป็นเพราะยอดรวมพอร์ตลดจาก ฿1.99 ล้าน (สัปดาห์ 10.10) เหลือ ฿1.41 ล้าน ขณะที่ยอดสินค้าใหม่เพิ่มขึ้นเพียง 4% (฿168,087 → ฿174,509) หมายเหตุ: ตัวเลขสัปดาห์ 7-13 และ 14-20 ก.ย. ถูกปรับย้อนหลังเพื่อรวม SK046/SK056/MK057 ที่เริ่มขาย 9 ก.ย. (MK057 สัปดาห์ 7-13 ก.ย. ปรับสัดส่วน 5/7 วัน เพราะไฟล์ไม่มีข้อมูลรายวัน และยอด ฿16,634 ในสัปดาห์ 31 ส.ค.-6 ก.ย. ที่ขายก่อนวันเริ่มไม่นับ) ยอดรวมสัปดาห์ 5-11 ต.ค. ยังเป็นไฟล์เดิมที่รวม MS042-1/2 ฿15,809 ซึ่งระบบแก้แล้วในไฟล์สัปดาห์นี้
       </div>
       <div class="chart-box">
         <div style="position:relative;height:260px;"><canvas id="trendChart"></canvas></div>
@@ -168,7 +171,7 @@
         <tbody id="lifecycleSummary"></tbody>
       </table>
       <div class="callout red" style="margin-top:16px;">
-        <b>ธงเตือน:</b> พอร์ตสินค้าใหม่ <b>19 SKU</b> (หมดอายุระหว่าง 13 ธ.ค. 69 – 7 ก.พ. 70 เหลือเวลา 62-118 วัน) — สัปดาห์ล่าสุดรวม ฿168,087 คิดเป็น 8.4% ของยอดขายรวม ฿1.99 ล้าน ตัวขับหลัก: <b>SK046 ฿25,427, Halloween Glitter ฿24,323, MS066 ฿18,003, Halloween Lip ฿15,306</b> และ MK057-01/02 รวม ฿27,761 ส่วน MK063 (฿5,673) และ SK047 (฿2,414) เพิ่งเปิดขาย 10 ต.ค. ได้ยอดแค่ 2 วัน — <b>ความเสี่ยงคือ SKU ธีม Halloween (MK022/MK005-HLW2026, MS066 Ghostmami, MK021 เล็บ) น่าจะยอดตกหลัง 31 ต.ค.</b> ทั้งที่ยังอยู่ในสถานะสินค้าใหม่อีกราว 90 วัน กลุ่มน้ำหอม FR001-005 ฟื้นเป็น ฿14,386 (จาก ฿2,605) แต่มาจาก FR005 ตัวเดียว ฿8,936
+        <b>ธงเตือน:</b> พอร์ตสินค้าใหม่ <b>19 SKU</b> (หมดอายุระหว่าง 13 ธ.ค. 69 – 7 ก.พ. 70 เหลือเวลา 55-111 วัน) — สัปดาห์ล่าสุดรวม ฿174,509 คิดเป็น 12.4% ของยอดขายรวม ฿1.41 ล้าน ตัวขับหลัก: <b>MS066 ฿26,728, Halloween Lip ฿26,198, Halloween Glitter ฿19,878, MK057-01 ฿18,782, SK046 ฿17,897</b> (ลดลง 30% จาก ฿25,427) ส่วน MK063 ฿11,836 และ SK047 ฿11,777 ขายเต็มสัปดาห์แรก — กลุ่มธีม Halloween (MS066, MK022/MK005-HLW2026) รวม ฿72,804 คิดเป็น 42% ของสินค้าใหม่ <b>ความเสี่ยงคือยอดน่าจะตกหลัง 31 ต.ค.</b> ถ้าตัดกลุ่มนี้ออก % จะเหลือราว 7% กลุ่มน้ำหอม FR001-005 กลับไปนิ่งที่ ฿5,372 (FR005 ลดจาก ฿8,936 เหลือ ฿1,381) ยืนยันว่าสัปดาห์ก่อนเป็นแค่ spike ชั่วคราว
       </div>
     </section>
 
@@ -176,10 +179,10 @@
       <h2>Action Plan</h2>
       <div class="actions">
         <ol>
-          <li><b>สัปดาห์ล่าสุด 8.4% สูงสุดในรอบ 8 สัปดาห์ แต่ห่างเป้าอีกราว ฿230,000 ต่อสัปดาห์</b> (เป้า 20% ของ ฿1.99 ล้าน = ฿398,000 vs ที่ทำได้ ฿168,000) ตัวหลักที่ควรดัน spend ต่อคือ SK046 (฿25,427 ยอดโตจาก ฿13,612 สัปดาห์ก่อน GP 68.8%) และ MK022-HLW2026 (฿24,323 GP 78.0% สูงสุดในกลุ่ม)</li>
-          <li><b>วางแผนรับมือหลัง Halloween (31 ต.ค.)</b> — Glitter/Lip/MS066/เล็บ Halloween รวมกันราว ฿64,000 ต่อสัปดาห์ คิดเป็นราว 38% ของสินค้าใหม่ทั้งหมด ถ้ายอดกลุ่มนี้ตก % จะกลับไปราว 5% ต้องมี SKU Christmas/New Year เข้าพอร์ตก่อน ไม่งั้นช่วงพ.ย.-ธ.ค. จะเสี่ยงต่ำกว่าสัปดาห์นี้</li>
-          <li><b>MS066 (Ghostmami Makeup Set) GP แค่ 54.3%</b> ต่ำสุดในกลุ่มสินค้าใหม่ (ค่าเฉลี่ยกลุ่ม 69.1%) ยอดโตแต่ margin บาง เช็คต้นทุนชุดและส่วนลดก่อนเพิ่ม spend ให้ตัวนี้</li>
-          <li><b>ข้อมูลที่ผิดปกติควรเช็ค:</b> SK029-B (Facial Wash รหัสใหม่) GP 30.7% ยอด ฿52,088 ยังต่ำต่อเนื่อง (ปกติ ~66%) และ MK039-B (Ecoshine Play) GP ติดลบ −64% จากยอด ฿3,900 น่าจะเป็นโปรหนัก/ของแถม หรือต้นทุนรหัสใหม่ตั้งผิด ผมรวม SK029-B เข้ากับ SK029 ในตาราง Top 20 แล้ว</li>
+          <li><b>สัปดาห์ล่าสุด 12.4% ห่างเป้าอีกราว ฿108,000 ต่อสัปดาห์</b> (เป้า 20% ของ ฿1.41 ล้าน = ฿283,000 vs ที่ทำได้ ฿175,000) แต่อย่าเพิ่งวางใจ ตัวเลขดีขึ้นส่วนหนึ่งเพราะยอดรวมพอร์ตลดลงหลังสัปดาห์ 10.10 ถ้าสัปดาห์แคมเปญยอดรวมกลับไปราว ฿2 ล้าน % จะเหลือราว 9% ต้องยกยอดสินค้าใหม่ขึ้นจริง ไม่ใช่รอให้ตัวหารลด</li>
+          <li><b>วางแผนรับมือหลัง Halloween (31 ต.ค.)</b> — MS066, Halloween Lip และ Halloween Glitter รวม ฿72,804 ต่อสัปดาห์ คิดเป็น 42% ของสินค้าใหม่ ถ้ายอดกลุ่มนี้ตก % จะกลับไปราว 7% ต้องมี SKU Christmas/New Year เข้าพอร์ตก่อนปลาย ต.ค. ไม่งั้นช่วง พ.ย.-ธ.ค. จะเสี่ยงต่ำกว่าสัปดาห์นี้</li>
+          <li><b>MK063 ควรดันต่อ</b> — GP 82.2% สูงสุดในกลุ่มสินค้าใหม่ (ค่าเฉลี่ย 68.5%) ยอด ฿11,836 ในสัปดาห์แรกเต็ม ส่วน <b>SK047 GP 54.8% และ MS066 GP 59.8%</b> ต่ำกว่าค่าเฉลี่ยมาก ยอดโตแต่ margin บาง เช็คต้นทุนและส่วนลดก่อนเพิ่ม spend</li>
+          <li><b>SK046 ลดลง 30% (฿25,427 → ฿17,897)</b> และ FR001-005 กลับไปนิ่ง ควรเช็คว่าเป็นผลหลังแคมเปญ 10.10 หรือเริ่มชะลอจริง ข้อมูลที่ผิดปกติยังต้องเช็คต่อ: SK029-B GP 38.4% (ปกติ ~66%, ยอด ฿44,652) และ MK039-B GP ติดลบ −89% (ยอด ฿4,034)</li>
         </ol>
       </div>
     </section>
@@ -188,9 +191,9 @@
   <!-- BESTSELLERS -->
   <div class="page" id="p-bestseller">
     <section>
-      <h2>Top 20 สินค้าขายดี ทั้งพอร์ต (สะสม 22 มิ.ย.–11 ต.ค. — 15 ช่วง/16 สัปดาห์)</h2>
-      <div class="callout">SK031 (Kids and Tweens Hybrid Sunscreen) ติด Top 6 ยอดขายแต่ margin แค่ 35.7% ต่ำกว่าพอร์ตเฉลี่ยเกือบครึ่ง — ขายดีแต่ไม่ทำกำไรตามมาตรฐาน ควรเช็ค pricing/cost structure ก่อนเร่ง spend เพิ่ม</div>
-      <div class="callout blue">✓ คำนวณจากไฟล์ export ครบ 15 ช่วง (22 มิ.ย.–11 ต.ค. 2026) รวมรหัสที่เปลี่ยนใหม่แล้ว (SK001-B/NC, SK044-B, SK029-B) — อันดับ 1-10 แม่นยำ ส่วนอันดับ 11-20 เป็นค่าโดยประมาณ (คลาดเคลื่อนได้ราว ±5%) เพราะข้อมูลดิบ 3 สัปดาห์แรกของ SKU กลุ่มท้ายตารางไม่ครบทุกแถว ยอดรวมเป็นของ Top 20 เท่านั้น ไม่รวม SKU เล็กๆ ที่เหลือ</div>
+      <h2>Top 20 สินค้าขายดี ทั้งพอร์ต (สะสม 22 มิ.ย.–18 ต.ค. — 16 ช่วง/17 สัปดาห์)</h2>
+      <div class="callout">SK031 (Kids and Tweens Hybrid Sunscreen) ติด Top 6 ยอดขายแต่ margin แค่ 35.9% ต่ำกว่าพอร์ตเฉลี่ยเกือบครึ่ง — ขายดีแต่ไม่ทำกำไรตามมาตรฐาน ควรเช็ค pricing/cost structure ก่อนเร่ง spend เพิ่ม</div>
+      <div class="callout blue">✓ คำนวณจากไฟล์ export ครบ 16 ช่วง (22 มิ.ย.–18 ต.ค. 2026) รวมรหัสที่เปลี่ยนใหม่แล้ว (SK001-B/NC, SK044-B, SK029-B) — อันดับ 1-10 แม่นยำ ส่วนอันดับ 11-20 เป็นค่าโดยประมาณ (คลาดเคลื่อนได้ราว ±5%) เพราะข้อมูลดิบ 3 สัปดาห์แรกของ SKU กลุ่มท้ายตารางไม่ครบทุกแถว ยอดรวมเป็นของ Top 20 เท่านั้น ไม่รวม SKU เล็กๆ ที่เหลือ</div>
       <div class="chart-box">
         <div style="position:relative;height:820px;"><canvas id="bestSellerChart"></canvas></div>
         <div class="legend">
@@ -247,6 +250,32 @@
     </section>
   </div>
 
+  <!-- SKU TREND -->
+  <div class="page" id="p-skutrend">
+    <section>
+      <h2>แนวโน้มสินค้าใหม่รายตัว <span class="h2-sub">19 SKU ที่ยังอยู่ในช่วง 120 วัน · ถ้าสัปดาห์เปิดขายไม่เต็มจะเทียบเป็นยอดต่อวัน</span></h2>
+      <div class="cards" id="trendCards"></div>
+      <div class="callout blue" id="trendPeakNote" style="font-size:12.5px;"></div>
+      <div id="trendFilter" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;"></div>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead><tr><th>SKU / สินค้า</th><th>หมวด</th><th>เริ่มขาย</th><th>ยอดสะสม</th><th>สัปดาห์ล่าสุด</th><th>ต่อวัน</th><th>เทียบก่อนหน้า</th><th>เทียบพีค</th><th>GP ล่าสุด</th><th>แนวโน้ม</th><th>10 สัปดาห์</th><th>เหลือ</th></tr></thead>
+          <tbody id="trendBody"></tbody>
+        </table>
+      </div>
+      <p style="font-size:12px;color:var(--text3);margin-top:8px;">คลิกแถวเพื่อดูกราฟและบทวิเคราะห์รายตัวด้านล่าง · "เทียบก่อนหน้า" = ยอดต่อวันสัปดาห์ล่าสุดเทียบค่าเฉลี่ยยอดต่อวันของ 2 สัปดาห์ก่อนหน้า · ข้อมูลคำนวณจากยอดที่ชำระแล้วตั้งแต่วันเริ่มนับ 120 วัน</p>
+    </section>
+    <section>
+      <h2 id="trendDetailTitle">รายละเอียดรายสินค้า</h2>
+      <div class="cards" id="trendDetailCards"></div>
+      <div class="chart-box">
+        <div style="position:relative;height:300px;"><canvas id="trendDetailChart"></canvas></div>
+        <div class="legend"><span><span class="dot" style="background:#cfe0f3;"></span>สัปดาห์เปิดขายไม่เต็ม</span><span><span class="dot" style="background:#7ba8d8;"></span>สัปดาห์เต็ม</span></div>
+      </div>
+      <div class="callout blue" id="trendInsight" style="margin-top:16px;"></div>
+    </section>
+  </div>
+
   <!-- LIFECYCLE -->
   <div class="page" id="p-lifecycle">
     <section>
@@ -280,7 +309,7 @@
     </section>
   </div>
 
-  <footer>Cosceutic — NPD KPI Dashboard | อ้างอิงจากไฟล์ export 15 รอบ 22 มิ.ย.–11 ต.ค. 2026 | สี CI: 1st-skincare #7ba8d8</footer>
+  <footer>Cosceutic — NPD KPI Dashboard | อ้างอิงจากไฟล์ export 16 รอบ 22 มิ.ย.–18 ต.ค. 2026 | สี CI: 1st-skincare #7ba8d8</footer>
 </div>
 
 <div class="modal-backdrop" id="skuModalBackdrop">
@@ -355,6 +384,11 @@ const weeks = [
     otherItems:[{code:'MK063',name:'Wicked Scarlet Face Color',sales:5672.61},{code:'MK022-HLW2026',name:'Wonder Glitter Halloween Collection',sales:24323.41},{code:'MS066',name:'Ghostmami Makeup Set',sales:18003.30},{code:'MK005-HLW2026',name:'Mild First Creamy Lip Halloween Collection',sales:15305.73},{code:'MK057-02',name:'Mild First Soft Matte Powder #02',sales:14655.87},{code:'MK057-01',name:'Mild First Soft Matte Powder #01',sales:13105.48},{code:'MK021-Prinil',name:'Mild First Water Based Nail Polish',sales:3257.81},{code:'MK021-Prilin',name:'Mild First Water Based Nail Polish',sales:2796.30}],
     skinItems:[{code:'SK047',name:'Godmami Kids & Tweens Refreshing Moisture Gel Cream 50g',sales:2413.57},{code:'SK046',name:'Tiny Me Hybrid Sun Stick',sales:25427.41},{code:'SK056-01',name:'Mild First Natural Fresh-Care (กลิ่น 01)',sales:8703.94},{code:'SK056-02',name:'Mild First Natural Fresh-Care (กลิ่น 02)',sales:6436.11}],
     pct:8.45, status:'red'},
+  {label:'12-18 ต.ค.', total:1413261.07, sk044:0, peach:0, pp:0, cl:0, sk039:0, fr:5371.74, mk044s:14068.35, sk052:147.71, other:116777.26, otherSkin:38143.55,
+    frItems:[{code:'FR001',name:'Perfume Spray (Airy Sky)',sales:758.01},{code:'FR002',name:'Perfume Spray (Sencha)',sales:478.00},{code:'FR003',name:'Perfume Spray (Flower Princess)',sales:1120.04},{code:'FR004',name:'Perfume Spray (Snow Cotton)',sales:1634.83},{code:'FR005',name:'Perfume Spray (Spring Blossom)',sales:1380.86}],
+    otherItems:[{code:'MS066',name:'Ghostmami Makeup Set',sales:26727.70},{code:'MK005-HLW2026',name:'Mild First Creamy Lip Halloween Collection',sales:26198.34},{code:'MK022-HLW2026',name:'Wonder Glitter Halloween Collection',sales:19878.45},{code:'MK057-01',name:'Mild First Soft Matte Powder #01',sales:18782.46},{code:'MK063',name:'Wicked Scarlet Face Color',sales:11835.59},{code:'MK057-02',name:'Mild First Soft Matte Powder #02',sales:9822.68},{code:'MK021-Prinil',name:'Mild First Water Based Nail Polish',sales:2575.43},{code:'MK021-Prilin',name:'Mild First Water Based Nail Polish',sales:956.61}],
+    skinItems:[{code:'SK046',name:'Tiny Me Hybrid Sun Stick',sales:17897.09},{code:'SK047',name:'Godmami Kids & Tweens Refreshing Moisture Gel Cream 50g',sales:11776.93},{code:'SK056-02',name:'Mild First Natural Fresh-Care (กลิ่น 02)',sales:4390.31},{code:'SK056-01',name:'Mild First Natural Fresh-Care (กลิ่น 01)',sales:4079.22}],
+    pct:12.35, status:'red'},
 ];
 
 const skuNames = {
@@ -464,10 +498,10 @@ new Chart(document.getElementById('newSkuTrendChart'), {
 
 /* Category */
 const categories = [
-  {name:'Haircare', sales:1551111, pct:60.2},
-  {name:'Makeup', sales:714974, pct:27.7},
-  {name:'Skincare', sales:249857, pct:9.7},
-  {name:'Fragrance', sales:62648, pct:2.4},
+  {name:'Haircare', sales:1551111, pct:56.3},
+  {name:'Makeup', sales:845820, pct:30.7},
+  {name:'Skincare', sales:288148, pct:10.5},
+  {name:'Fragrance', sales:68020, pct:2.5},
 ];
 const catColors = {'Haircare':'#b8c4e8','Makeup':'#f08ca4','Skincare':'#8fdba0','Fragrance':'#7dd8c8'};
 new Chart(document.getElementById('categoryChart'), {
@@ -516,26 +550,26 @@ catWeeklyTbody.addEventListener('click', (e)=>{
 
 /* Best sellers (portfolio, 3-week cumulative, unchanged data) */
 const bestSellers = [
-  {code:'SK001', name:'Gentle Daily Care Shampoo 450ml (รวมรหัส SK001-B/NC)', sales:3700259, gp:70.6, qty:15029, ret:0.2, isNew:false},
-  {code:'SK044', name:'Gentle Daily Care Hydrating Shampoo (รวมรหัส SK044-B)', sales:2308366, gp:63.0, qty:10754, ret:0.2, isNew:true},
-  {code:'SK030', name:'Kids and Tweens Vitamin Face Cream 30g', sales:2021149, gp:62.2, qty:6957, ret:0.2, isNew:false},
-  {code:'SK034', name:'Gentle Boy Daily Care Shampoo 450ml', sales:1228027, gp:72.4, qty:5003, ret:0.2, isNew:false},
-  {code:'SK002', name:'Gentle Daily Care Shampoo #Refill', sales:1208227, gp:73.4, qty:6002, ret:0.2, isNew:false},
-  {code:'SK031', name:'Kids and Tweens Hybrid Sunscreen SPF50+', sales:1025045, gp:35.7, qty:4023, ret:0.2, isNew:false},
-  {code:'SK042', name:'Gentle Daily Care Conditioner 150ml', sales:1015387, gp:64.6, qty:4397, ret:0.2, isNew:false},
-  {code:'SK029', name:'Kids and Tweens Vitamin Facial Wash 100g (รวมรหัส SK029-B)', sales:990792, gp:64.0, qty:4163, ret:0.2, isNew:false},
-  {code:'SK003', name:'Gentle Daily Hair Care Serum 70g', sales:666936, gp:68.0, qty:2866, ret:0.2, isNew:false},
-  {code:'SK039', name:'Mild First Armpit Care Roll-On', sales:381306, gp:71.4, qty:1765, ret:0.2, isNew:true},
-  {code:'MK005-C4STRAWBERRY', name:'Mild First Creamy Lip #Strawberry', sales:380898, gp:66.4, qty:2558, ret:0.2, isNew:false},
-  {code:'SK035', name:'Kids and Tweens Vitamin Body Lotion 250g', sales:316175, gp:53.9, qty:740, ret:0.2, isNew:false},
-  {code:'MK002-00WHITE-RW', name:'Mild First Pressed Powder #White', sales:291526, gp:55.1, qty:1403, ret:0.2, isNew:false},
-  {code:'SK032', name:'Kids and Tweens Vitamin Body Lotion 100g', sales:276119, gp:63.4, qty:1097, ret:0.2, isNew:false},
-  {code:'MK022-07STARLIGHT', name:'Wonder Glitter #Starlight Romance', sales:267246, gp:76.8, qty:1797, ret:0.2, isNew:false},
+  {code:'SK001', name:'Gentle Daily Care Shampoo 450ml (รวมรหัส SK001-B/NC)', sales:3923593, gp:70.7, qty:15966, ret:0.2, isNew:false},
+  {code:'SK044', name:'Gentle Daily Care Hydrating Shampoo (รวมรหัส SK044-B)', sales:2457448, gp:63.3, qty:11344, ret:0.2, isNew:true},
+  {code:'SK030', name:'Kids and Tweens Vitamin Face Cream 30g', sales:2133198, gp:62.4, qty:7310, ret:0.2, isNew:false},
+  {code:'SK034', name:'Gentle Boy Daily Care Shampoo 450ml', sales:1300857, gp:72.5, qty:5279, ret:0.2, isNew:false},
+  {code:'SK002', name:'Gentle Daily Care Shampoo #Refill', sales:1264785, gp:73.4, qty:6277, ret:0.2, isNew:false},
+  {code:'SK031', name:'Kids and Tweens Hybrid Sunscreen SPF50+', sales:1069531, gp:35.9, qty:4183, ret:0.2, isNew:false},
+  {code:'SK042', name:'Gentle Daily Care Conditioner 150ml', sales:1066526, gp:64.8, qty:4596, ret:0.2, isNew:false},
+  {code:'SK029', name:'Kids and Tweens Vitamin Facial Wash 100g (รวมรหัส SK029-B)', sales:1035444, gp:62.9, qty:4387, ret:0.2, isNew:false},
+  {code:'SK003', name:'Gentle Daily Hair Care Serum 70g', sales:701985, gp:68.1, qty:3006, ret:0.2, isNew:false},
+  {code:'SK039', name:'Mild First Armpit Care Roll-On', sales:411470, gp:71.4, qty:1904, ret:0.2, isNew:true},
+  {code:'MK005-C4STRAWBERRY', name:'Mild First Creamy Lip #Strawberry', sales:395111, gp:66.4, qty:2651, ret:0.2, isNew:false},
+  {code:'SK035', name:'Kids and Tweens Vitamin Body Lotion 250g', sales:325155, gp:53.8, qty:762, ret:0.2, isNew:false},
+  {code:'MK002-00WHITE-RW', name:'Mild First Pressed Powder #White', sales:293291, gp:55.1, qty:1412, ret:0.2, isNew:false},
+  {code:'SK032', name:'Kids and Tweens Vitamin Body Lotion 100g', sales:287855, gp:63.5, qty:1140, ret:0.2, isNew:false},
+  {code:'MK022-07STARLIGHT', name:'Wonder Glitter #Starlight Romance', sales:275515, gp:76.8, qty:1852, ret:0.2, isNew:false},
+  {code:'MK018-T1PINK', name:'Mild First Tint Lip Balm 3.5g', sales:238378, gp:86.6, qty:1266, ret:0.2, isNew:false},
+  {code:'MK037', name:'Pre-Teen Pressed Powder', sales:236018, gp:60.5, qty:2057, ret:0.2, isNew:false},
   {code:'MS062-5', name:'The Memory Makeup Set', sales:231637, gp:34.0, qty:168, ret:0.2, isNew:false},
-  {code:'MK037', name:'Pre-Teen Pressed Powder', sales:224969, gp:60.4, qty:1964, ret:0.2, isNew:false},
-  {code:'MK018-T1PINK', name:'Mild First Tint Lip Balm 3.5g', sales:222514, gp:86.6, qty:1183, ret:0.2, isNew:false},
-  {code:'MK054-PeachPop', name:'Lollipop Moisture Balm #Peach Pop', sales:213603, gp:76.9, qty:1133, ret:0.2, isNew:true},
-  {code:'MK011-FC01LIGHT', name:'Mama and Me Foundation Cream #Light', sales:205562, gp:73.1, qty:690, ret:0.2, isNew:false},
+  {code:'MK054-PeachPop', name:'Lollipop Moisture Balm #Peach Pop', sales:220368, gp:76.9, qty:1167, ret:0.2, isNew:true},
+  {code:'MK011-FC01LIGHT', name:'Mama and Me Foundation Cream #Light', sales:219086, gp:73.2, qty:732, ret:0.2, isNew:false},
 ];
 new Chart(document.getElementById('bestSellerChart'), {
   type:'bar',
@@ -556,25 +590,25 @@ bestSellers.forEach((r,i)=>{
 
 /* Lifecycle */
 const lifecycle = [
-  {code:'MK063', name:'Wicked Scarlet Face Color', barcode:'—', start:'10 ต.ค. 69', expiry:'7 ก.พ. 70', remain:'118 วัน', status:'active'},
-  {code:'SK047', name:'Godmami Kids & Tweens Refreshing Moisture Gel Cream 50g', barcode:'—', start:'10 ต.ค. 69', expiry:'7 ก.พ. 70', remain:'118 วัน', status:'active'},
-  {code:'SK046', name:'Tiny Me Hybrid Sun Stick', barcode:'—', start:'9 ก.ย. 69', expiry:'7 ม.ค. 70', remain:'87 วัน', status:'active'},
-  {code:'SK056-01', name:'Mild First Natural Fresh-Care (กลิ่น 01)', barcode:'—', start:'9 ก.ย. 69', expiry:'7 ม.ค. 70', remain:'87 วัน', status:'active'},
-  {code:'SK056-02', name:'Mild First Natural Fresh-Care (กลิ่น 02)', barcode:'—', start:'9 ก.ย. 69', expiry:'7 ม.ค. 70', remain:'87 วัน', status:'active'},
-  {code:'MK057-01', name:'Mild First Soft Matte Powder #01', barcode:'—', start:'9 ก.ย. 69', expiry:'7 ม.ค. 70', remain:'87 วัน', status:'active'},
-  {code:'MK057-02', name:'Mild First Soft Matte Powder #02', barcode:'—', start:'9 ก.ย. 69', expiry:'7 ม.ค. 70', remain:'87 วัน', status:'active'},
-  {code:'MS066', name:'Ghostmami Makeup Set', barcode:'—', start:'15 ก.ย. 69', expiry:'13 ม.ค. 70', remain:'93 วัน', status:'active'},
-  {code:'MK022-HLW2026', name:'Wonder Glitter Halloween Collection', barcode:'—', start:'15 ก.ย. 69', expiry:'13 ม.ค. 70', remain:'93 วัน', status:'active'},
-  {code:'MK005-HLW2026', name:'Mild First Creamy Lip Halloween Collection', barcode:'—', start:'15 ก.ย. 69', expiry:'13 ม.ค. 70', remain:'93 วัน', status:'active'},
-  {code:'MK021-Prinil', name:'Mild First Water Based Nail Polish', barcode:'—', start:'15 ก.ย. 69', expiry:'13 ม.ค. 70', remain:'93 วัน', status:'active'},
-  {code:'MK021-Prilin', name:'Mild First Water Based Nail Polish', barcode:'—', start:'15 ก.ย. 69', expiry:'13 ม.ค. 70', remain:'93 วัน', status:'active'},
-  {code:'MK044-Summer', name:'Mild Mini Pocket Blush (Summer Shine)', barcode:'8859769906373', start:'15 ส.ค. 69', expiry:'13 ธ.ค. 69', remain:'62 วัน', status:'active'},
-  {code:'SK052', name:'Mild First Fresh Step Spray 30ml', barcode:'8859769906687', start:'25 ส.ค. 69', expiry:'23 ธ.ค. 69', remain:'72 วัน', status:'active'},
-  {code:'FR001', name:'Perfume Spray (Airy Sky)', barcode:'8859769906380', start:'20 ส.ค. 69', expiry:'18 ธ.ค. 69', remain:'67 วัน', status:'active'},
-  {code:'FR002', name:'Perfume Spray (Sencha)', barcode:'8859769906397', start:'20 ส.ค. 69', expiry:'18 ธ.ค. 69', remain:'67 วัน', status:'active'},
-  {code:'FR003', name:'Perfume Spray (Flower Princess)', barcode:'8859769906403', start:'20 ส.ค. 69', expiry:'18 ธ.ค. 69', remain:'67 วัน', status:'active'},
-  {code:'FR004', name:'Perfume Spray (Snow Cotton)', barcode:'8859769906410', start:'20 ส.ค. 69', expiry:'18 ธ.ค. 69', remain:'67 วัน', status:'active'},
-  {code:'FR005', name:'Perfume Spray (Spring Blossom)', barcode:'8859769906427', start:'20 ส.ค. 69', expiry:'18 ธ.ค. 69', remain:'67 วัน', status:'active'},
+  {code:'MK063', name:'Wicked Scarlet Face Color', barcode:'—', start:'10 ต.ค. 69', expiry:'7 ก.พ. 70', remain:'111 วัน', status:'active'},
+  {code:'SK047', name:'Godmami Kids & Tweens Refreshing Moisture Gel Cream 50g', barcode:'—', start:'10 ต.ค. 69', expiry:'7 ก.พ. 70', remain:'111 วัน', status:'active'},
+  {code:'SK046', name:'Tiny Me Hybrid Sun Stick', barcode:'—', start:'9 ก.ย. 69', expiry:'7 ม.ค. 70', remain:'80 วัน', status:'active'},
+  {code:'SK056-01', name:'Mild First Natural Fresh-Care (กลิ่น 01)', barcode:'—', start:'9 ก.ย. 69', expiry:'7 ม.ค. 70', remain:'80 วัน', status:'active'},
+  {code:'SK056-02', name:'Mild First Natural Fresh-Care (กลิ่น 02)', barcode:'—', start:'9 ก.ย. 69', expiry:'7 ม.ค. 70', remain:'80 วัน', status:'active'},
+  {code:'MK057-01', name:'Mild First Soft Matte Powder #01', barcode:'—', start:'9 ก.ย. 69', expiry:'7 ม.ค. 70', remain:'80 วัน', status:'active'},
+  {code:'MK057-02', name:'Mild First Soft Matte Powder #02', barcode:'—', start:'9 ก.ย. 69', expiry:'7 ม.ค. 70', remain:'80 วัน', status:'active'},
+  {code:'MS066', name:'Ghostmami Makeup Set', barcode:'—', start:'15 ก.ย. 69', expiry:'13 ม.ค. 70', remain:'86 วัน', status:'active'},
+  {code:'MK022-HLW2026', name:'Wonder Glitter Halloween Collection', barcode:'—', start:'15 ก.ย. 69', expiry:'13 ม.ค. 70', remain:'86 วัน', status:'active'},
+  {code:'MK005-HLW2026', name:'Mild First Creamy Lip Halloween Collection', barcode:'—', start:'15 ก.ย. 69', expiry:'13 ม.ค. 70', remain:'86 วัน', status:'active'},
+  {code:'MK021-Prinil', name:'Mild First Water Based Nail Polish', barcode:'—', start:'15 ก.ย. 69', expiry:'13 ม.ค. 70', remain:'86 วัน', status:'active'},
+  {code:'MK021-Prilin', name:'Mild First Water Based Nail Polish', barcode:'—', start:'15 ก.ย. 69', expiry:'13 ม.ค. 70', remain:'86 วัน', status:'active'},
+  {code:'MK044-Summer', name:'Mild Mini Pocket Blush (Summer Shine)', barcode:'8859769906373', start:'15 ส.ค. 69', expiry:'13 ธ.ค. 69', remain:'55 วัน', status:'active'},
+  {code:'SK052', name:'Mild First Fresh Step Spray 30ml', barcode:'8859769906687', start:'25 ส.ค. 69', expiry:'23 ธ.ค. 69', remain:'65 วัน', status:'active'},
+  {code:'FR001', name:'Perfume Spray (Airy Sky)', barcode:'8859769906380', start:'20 ส.ค. 69', expiry:'18 ธ.ค. 69', remain:'60 วัน', status:'active'},
+  {code:'FR002', name:'Perfume Spray (Sencha)', barcode:'8859769906397', start:'20 ส.ค. 69', expiry:'18 ธ.ค. 69', remain:'60 วัน', status:'active'},
+  {code:'FR003', name:'Perfume Spray (Flower Princess)', barcode:'8859769906403', start:'20 ส.ค. 69', expiry:'18 ธ.ค. 69', remain:'60 วัน', status:'active'},
+  {code:'FR004', name:'Perfume Spray (Snow Cotton)', barcode:'8859769906410', start:'20 ส.ค. 69', expiry:'18 ธ.ค. 69', remain:'60 วัน', status:'active'},
+  {code:'FR005', name:'Perfume Spray (Spring Blossom)', barcode:'8859769906427', start:'20 ส.ค. 69', expiry:'18 ธ.ค. 69', remain:'60 วัน', status:'active'},
   {code:'SK044', name:'Gentle Daily Care Hydrating Shampoo', barcode:'8859769905970', start:'5 พ.ค. 69', expiry:'2 ก.ย. 69', remain:'หมดอายุแล้ว 6 วัน (ยอด = 0 สัปดาห์ล่าสุด)', status:'expired'},
   {code:'MK005-01PEACH', name:'Mild First Creamy Lip #Peach Girl', barcode:'8859769906250', start:'5 พ.ค. 69', expiry:'2 ก.ย. 69', remain:'หมดอายุแล้ว 6 วัน', status:'expired'},
   {code:'MK054-PeachPop', name:'Lollipop Moisture Balm #Peach Pop', barcode:'—', start:'7 พ.ค. 69', expiry:'4 ก.ย. 69', remain:'หมดอายุแล้ว 4 วัน', status:'expired'},
@@ -792,6 +826,18 @@ const weeklyBest = [
     {code:'SK003',name:'Gentle Daily Hair Care Serum',sales:46089,gp:68.6},
     {code:'SK039',name:'Mild First Armpit Care Roll-On',sales:42817,gp:71.7},
   ]},
+  { label:'12-18 ต.ค.', top:[
+    {code:'SK001-B',name:'Gentle Daily Care Shampoo (รหัสใหม่)',sales:223334,gp:72.4},
+    {code:'SK044-B',name:'Gentle Daily Care Hydrating Shampoo (รหัสใหม่)',sales:149082,gp:67.9},
+    {code:'SK030',name:'Kids and Tweens Vitamin Face Cream',sales:112048,gp:66.0},
+    {code:'SK034',name:'Gentle Boy Daily Care Shampoo',sales:72830,gp:74.5},
+    {code:'SK002',name:'Gentle Daily Care Shampoo #Refill',sales:56558,gp:74.3},
+    {code:'SK042',name:'Gentle Daily Care Conditioner',sales:51139,gp:68.4},
+    {code:'SK029',name:'Kids and Tweens Vitamin Facial Wash (รวม SK029-B)',sales:44652,gp:38.4},
+    {code:'SK031',name:'Kids and Tweens Hybrid Sunscreen',sales:44486,gp:41.6},
+    {code:'SK003',name:'Gentle Daily Hair Care Serum',sales:35049,gp:69.5},
+    {code:'SK039',name:'Mild First Armpit Care Roll-On',sales:30164,gp:71.6},
+  ]},
 ];
 let weeklyBestChart = null;
 function renderWeeklyBest(idx){
@@ -830,6 +876,152 @@ weeklyBest.forEach((w,i)=>{
   weekPickerBar.appendChild(btn);
 });
 renderWeeklyBest(weeklyBest.length-1);
+
+const trendLabels=["10-16 ส.ค.", "17-23 ส.ค.", "24-30 ส.ค.", "31ส.ค.-6ก.ย.", "7-13 ก.ย.", "14-20 ก.ย.", "21-27 ก.ย.", "28ก.ย.-4ต.ค.", "5-11 ต.ค.", "12-18 ต.ค."];
+const trendSkus=[{"code": "MK044-Summer", "name": "Mild Mini Pocket Blush (Summer Shine)", "cat": "Makeup", "launch": "15 ส.ค. 69", "expiry": "13 ธ.ค. 69", "remain": 55, "idx": 0, "days": 2, "sales": [1633.95, 10644.23, 15379.13, 15667.51, 18024.73, 11386.4, 13301.38, 7344.15, 12113.84, 14068.35], "gp": [81.6, 71.1, 66.3, 67.4, 65.8, 66.4, 68.4, 68.3, 69.6, 66.9]}, {"code": "SK052", "name": "Mild First Fresh Step Spray 30ml", "cat": "Skincare", "launch": "25 ส.ค. 69", "expiry": "23 ธ.ค. 69", "remain": 65, "idx": 2, "days": 6, "sales": [null, null, 889.48, 2332.36, 2631.03, 814.96, 1147.88, 1663.81, 1485.58, 147.71], "gp": [null, null, 74.4, 70.7, 68.8, 72.0, 72.2, 58.9, 75.4, 69.1]}, {"code": "FR001", "name": "Perfume Spray (Airy Sky)", "cat": "Fragrance", "launch": "20 ส.ค. 69", "expiry": "18 ธ.ค. 69", "remain": 60, "idx": 1, "days": 4, "sales": [null, 613.63, 1005.23, 815.88, 1785.78, 729.45, 978.39, 317.87, 742.94, 758.01], "gp": [null, 74.1, 68.6, 71.2, 69.3, 67.8, 68.0, 26.1, 68.4, 69.0]}, {"code": "FR002", "name": "Perfume Spray (Sencha)", "cat": "Fragrance", "launch": "20 ส.ค. 69", "expiry": "18 ธ.ค. 69", "remain": 60, "idx": 1, "days": 4, "sales": [null, 265.3, 1031.82, 1049.44, 1550.53, 775.68, 1247.27, 72.9, 502.05, 478], "gp": [null, 70.0, 69.1, 69.7, 69.2, 69.2, 68.1, -118.4, 68.3, 66.7]}, {"code": "FR003", "name": "Perfume Spray (Flower Princess)", "cat": "Fragrance", "launch": "20 ส.ค. 69", "expiry": "18 ธ.ค. 69", "remain": 60, "idx": 1, "days": 4, "sales": [null, 539.57, 1809.84, 2289.71, 2812.85, 1207.93, 1550.66, 237.9, 2642.28, 1120.04], "gp": [null, 70.5, 69.2, 72.2, 68.9, 67.1, 69.2, -0.4, 69.9, 71.6]}, {"code": "FR004", "name": "Perfume Spray (Snow Cotton)", "cat": "Fragrance", "launch": "20 ส.ค. 69", "expiry": "18 ธ.ค. 69", "remain": 60, "idx": 1, "days": 4, "sales": [null, 0.0, 1465.72, 2693.57, 2670.43, 1496.45, 1697.51, 784.41, 1563.13, 1634.83], "gp": [null, null, 68.1, 68.4, 68.2, 69.0, 68.1, 50.7, 70.3, 71.6]}, {"code": "FR005", "name": "Perfume Spray (Spring Blossom)", "cat": "Fragrance", "launch": "20 ส.ค. 69", "expiry": "18 ธ.ค. 69", "remain": 60, "idx": 1, "days": 4, "sales": [null, 818.17, 4472.17, 1945.99, 3292.25, 1599.45, 1446.97, 1191.55, 8936.08, 1380.86], "gp": [null, 70.8, 69.7, 67.3, 68.6, 70.1, 67.0, 59.9, 72.4, 71.2]}, {"code": "SK046", "name": "Tiny Me Hybrid Sun Stick", "cat": "Skincare", "launch": "9 ก.ย. 69", "expiry": "7 ม.ค. 70", "remain": 80, "idx": 4, "days": 5, "sales": [null, null, null, null, 10450.91, 14734.08, 15121.1, 13612.11, 25427.41, 17897.09], "gp": [null, null, null, null, 68.8, 69.8, 69.8, 65.7, 68.8, 69.7]}, {"code": "SK056-01", "name": "Mild First Natural Fresh-Care (กลิ่น 01)", "cat": "Skincare", "launch": "9 ก.ย. 69", "expiry": "7 ม.ค. 70", "remain": 80, "idx": 4, "days": 5, "sales": [null, null, null, null, 4253.7, 3559.48, 3443.65, 2267.28, 8703.94, 4079.22], "gp": [null, null, null, null, 76.9, 74.0, 74.8, 69.4, 76.1, 77.3]}, {"code": "SK056-02", "name": "Mild First Natural Fresh-Care (กลิ่น 02)", "cat": "Skincare", "launch": "9 ก.ย. 69", "expiry": "7 ม.ค. 70", "remain": 80, "idx": 4, "days": 5, "sales": [null, null, null, null, 4517.46, 2904.54, 3504.14, 3891.69, 6436.11, 4390.31], "gp": [null, null, null, null, 75.2, 75.7, 74.8, 74.3, 75.3, 77.2]}, {"code": "MK057-01", "name": "Mild First Soft Matte Powder #01", "cat": "Makeup", "launch": "9 ก.ย. 69", "expiry": "7 ม.ค. 70", "remain": 80, "idx": 4, "days": 5, "sales": [null, null, null, null, 7646.14, 15416.92, 8596.61, 10375.71, 13105.48, 18782.46], "gp": [null, null, null, null, 62.4, 66.0, 67.4, 64.9, 65.0, 63.7]}, {"code": "MK057-02", "name": "Mild First Soft Matte Powder #02", "cat": "Makeup", "launch": "9 ก.ย. 69", "expiry": "7 ม.ค. 70", "remain": 80, "idx": 4, "days": 5, "sales": [null, null, null, null, 10563.68, 19055.94, 8661, 6081.51, 14655.87, 9822.68], "gp": [null, null, null, null, 64.6, 65.2, 64.4, 64.6, 63.6, 66.7]}, {"code": "MS066", "name": "Ghostmami Makeup Set", "cat": "Makeup", "launch": "15 ก.ย. 69", "expiry": "13 ม.ค. 70", "remain": 86, "idx": 5, "days": 6, "sales": [null, null, null, null, null, 9352.7, 9113.92, 11760.31, 18003.3, 26727.7], "gp": [null, null, null, null, null, 62.8, 61.8, 65.0, 54.3, 59.8]}, {"code": "MK022-HLW2026", "name": "Wonder Glitter Halloween Collection", "cat": "Makeup", "launch": "15 ก.ย. 69", "expiry": "13 ม.ค. 70", "remain": 86, "idx": 5, "days": 6, "sales": [null, null, null, null, null, 5481.23, 8864, 10790.47, 24323.41, 19878.45], "gp": [null, null, null, null, null, 79.0, 77.7, 78.6, 78.0, 77.2]}, {"code": "MK005-HLW2026", "name": "Mild First Creamy Lip Halloween Collection", "cat": "Makeup", "launch": "15 ก.ย. 69", "expiry": "13 ม.ค. 70", "remain": 86, "idx": 5, "days": 6, "sales": [null, null, null, null, null, 2630.4, 4925.09, 6811.53, 15305.73, 26198.34], "gp": [null, null, null, null, null, 73.8, 74.0, 75.4, 74.2, 72.3]}, {"code": "MK021-Prinil", "name": "Mild First Water Based Nail Polish", "cat": "Makeup", "launch": "15 ก.ย. 69", "expiry": "13 ม.ค. 70", "remain": 86, "idx": 5, "days": 6, "sales": [null, null, null, null, null, 1458.37, 2903.89, 2849.33, 3257.81, 2575.43], "gp": [null, null, null, null, null, 67.0, 64.8, 66.2, 64.9, 65.0]}, {"code": "MK021-Prilin", "name": "Mild First Water Based Nail Polish", "cat": "Makeup", "launch": "15 ก.ย. 69", "expiry": "13 ม.ค. 70", "remain": 86, "idx": 5, "days": 6, "sales": [null, null, null, null, null, 910.91, 2616.94, 2018.47, 2796.3, 956.61], "gp": [null, null, null, null, null, 67.0, 65.5, 67.2, 63.5, 62.3]}, {"code": "MK063", "name": "Wicked Scarlet Face Color", "cat": "Makeup", "launch": "10 ต.ค. 69", "expiry": "7 ก.พ. 70", "remain": 111, "idx": 8, "days": 2, "sales": [null, null, null, null, null, null, null, null, 5672.61, 11835.59], "gp": [null, null, null, null, null, null, null, null, 83.1, 82.2]}, {"code": "SK047", "name": "Godmami Kids & Tweens Refreshing Moisture Gel Cream 50g", "cat": "Skincare", "launch": "10 ต.ค. 69", "expiry": "7 ก.พ. 70", "remain": 111, "idx": 8, "days": 2, "sales": [null, null, null, null, null, null, null, null, 2413.57, 11776.93], "gp": [null, null, null, null, null, null, null, null, 80.5, 54.8]}];
+/* ---------- TREND CORE (pure functions) ---------- */
+function trendRates(k){ return k.sales.map((v,i)=> v==null ? null : v/((i===k.idx && k.days<7)? k.days : 7)); }
+function trendAnalyze(k, groupGp){
+  const r=trendRates(k);
+  const pts=r.map((v,i)=>({i,v})).filter(x=>x.v!=null);
+  const nFull=pts.filter(x=>!(x.i===k.idx && k.days<7)).length;
+  const last=pts[pts.length-1];
+  const prev=pts.slice(Math.max(0,pts.length-3),pts.length-1);
+  const prevAvg=prev.length? prev.reduce((a,b)=>a+b.v,0)/prev.length : null;
+  const change=(prevAvg && prevAvg>0)? last.v/prevAvg-1 : null;
+  const peak=pts.reduce((a,b)=>b.v>a.v?b:a,pts[0]);
+  const pctPeak=peak.v>0? last.v/peak.v : null;
+  const total=k.sales.reduce((a,b)=>a+(b||0),0);
+  const lastSales=k.sales[last.i];
+  const gpPts=k.gp.map((g,i)=>({g,i,s:k.sales[i]})).filter(x=>x.g!=null && x.s>=500);
+  const gpLast=gpPts.length? gpPts[gpPts.length-1].g : null;
+  let status, tone;
+  if(nFull<2){ status='ใหม่ — ข้อมูลยังน้อย'; tone='new'; }
+  else if(change>=0.15){ if(pctPeak<0.6){status='ฟื้นตัว (ยังต่ำกว่าพีค)'; tone='rebound';} else {status='กำลังโต'; tone='up';} }
+  else if(pctPeak<0.6){ status='ผ่านพีคแล้ว'; tone='down'; }
+  else if(change<=-0.15){ status='ชะลอตัว'; tone='slow'; }
+  else { status='ทรงตัว'; tone='flat'; }
+  let action;
+  const gpOk = gpLast==null || groupGp==null || gpLast>=groupGp;
+  if(tone==='up') action = gpOk ? 'ดัน spend เพิ่ม' : 'โตแต่ margin ต่ำกว่ากลุ่ม — เช็คราคา/ต้นทุนก่อนดัน';
+  else if(tone==='rebound') action='เฝ้าดูอีก 1-2 สัปดาห์ก่อนเพิ่ม spend';
+  else if(tone==='flat') action = gpOk ? 'รักษาระดับ spend' : 'รักษาระดับ และเช็ค margin';
+  else if(tone==='slow') action='ทบทวน creative/โปรโมชัน';
+  else if(tone==='down') action='ตัดสินใจก่อนหมดสถานะ: รีเฟรชหรือลด spend';
+  else action='รอข้อมูลอย่างน้อย 2 สัปดาห์เต็มก่อนสรุป';
+  if(lastSales<3000 && (tone==='up'||tone==='rebound'||tone==='flat')) action='ยอดต่ำ (ต่ำกว่า ฿3,000 ต่อสัปดาห์) — ประเมินความคุ้มก่อนใช้ spend';
+  const recent=pts.slice(-2);
+  const avgDay=recent.reduce((a,b)=>a+b.v,0)/recent.length;
+  return {r,pts,nFull,last,change,peak,pctPeak,total,lastSales,gpLast,status,tone,action,avgDay};
+}
+function trendGroupGp(skus){
+  const li=skus[0].sales.length-1; let s=0,g=0;
+  skus.forEach(k=>{ const v=k.sales[li], gg=k.gp[li]; if(v>0 && gg!=null){ s+=v; g+=v*gg; } });
+  return s? g/s : null;
+}
+/* ---------- TREND UI ---------- */
+const trendNotes={
+  'MK044-Summer':'ขายมานานที่สุดในกลุ่มที่ยัง active (ตั้งแต่ 15 ส.ค.) ยอดสัปดาห์เต็มผันผวนระหว่าง ฿7,344–฿18,025 ถือเป็นฐานหลักของกลุ่มใหม่ก่อน SKU กลุ่ม ก.ย. เข้ามา',
+  'FR001':'นับเริ่มใหม่ตั้งแต่ 20 ส.ค. (ยอด 8-11 ส.ค. ก่อนหยุดขายไม่นับ) ยอดรวมน้ำหอม 5 กลิ่นผันผวน ฿2,200–฿14,400 ต่อสัปดาห์',
+  'FR002':'นับเริ่มใหม่ตั้งแต่ 20 ส.ค. (ยอด 8-11 ส.ค. ก่อนหยุดขายไม่นับ) ยอดต่ำสุดในกลุ่มน้ำหอม',
+  'FR003':'นับเริ่มใหม่ตั้งแต่ 20 ส.ค. (ยอด 8-11 ส.ค. ก่อนหยุดขายไม่นับ)',
+  'FR004':'นับเริ่มใหม่ตั้งแต่ 20 ส.ค. สัปดาห์แรก (17-23 ส.ค.) ไม่มียอด',
+  'FR005':'นับเริ่มใหม่ตั้งแต่ 20 ส.ค. สัปดาห์ 5-11 ต.ค. เป็น spike ฿8,936 แล้วกลับมาที่ ฿1,381',
+  'MK057-01':'สัปดาห์แรก (7-13 ก.ย.) ปรับสัดส่วน 5/7 วัน เพราะไฟล์ไม่มีข้อมูลรายวัน และมียอดก่อนวันเริ่มขาย 9 ก.ย. ปนอยู่ (ยอดสัปดาห์ 31 ส.ค.-6 ก.ย. ไม่นับ)',
+  'MK057-02':'สัปดาห์แรก (7-13 ก.ย.) ปรับสัดส่วน 5/7 วัน เพราะไฟล์ไม่มีข้อมูลรายวัน และมียอดก่อนวันเริ่มขาย 9 ก.ย. ปนอยู่ (ยอดสัปดาห์ 31 ส.ค.-6 ก.ย. ไม่นับ)',
+  'MS066':'ชื่อ Ghostmami สื่อถึงธีม Halloween (เป็นข้อสมมติ รอพลอยยืนยัน) ถ้าใช่ ยอดน่าจะตกหลัง 31 ต.ค.',
+  'MK022-HLW2026':'สินค้าธีม Halloween ยอดน่าจะตกหลัง 31 ต.ค. (สมมติฐาน ไม่ใช่ข้อมูลยืนยัน) ควรวางแผนระบายสต็อก',
+  'MK005-HLW2026':'สินค้าธีม Halloween ยอดน่าจะตกหลัง 31 ต.ค. (สมมติฐาน ไม่ใช่ข้อมูลยืนยัน) ควรวางแผนระบายสต็อก',
+  'MK063':'เปิดขาย 10 ต.ค. มีสัปดาห์เต็มเพียง 1 สัปดาห์ ยังสรุปแนวโน้มไม่ได้',
+  'SK047':'เปิดขาย 10 ต.ค. มีสัปดาห์เต็มเพียง 1 สัปดาห์ GP ต่ำกว่าค่าเฉลี่ยกลุ่มชัดเจน'
+};
+const trendTone={up:'tb-up',rebound:'tb-rebound',flat:'tb-flat',slow:'tb-slow',down:'tb-down',new:'tb-new'};
+const trendGroupGpVal=trendGroupGp(trendSkus);
+const trendRows=trendSkus.map(k=>({k,a:trendAnalyze(k,trendGroupGpVal)})).sort((x,y)=>y.a.total-x.a.total);
+let trendFilterCat='ทั้งหมด', trendSelected=trendRows[0].k.code, trendDetailChart=null;
+function trendSpark(a){
+  const w=88,h=24,n=trendLabels.length; const vals=a.r; const mx=Math.max(...vals.filter(v=>v!=null),1);
+  const pts=vals.map((v,i)=>v==null?null:[(i/(n-1))*(w-6)+3, h-3-(v/mx)*(h-6)]).filter(Boolean);
+  if(!pts.length) return '';
+  const lp=pts[pts.length-1];
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><polyline fill="none" stroke="#7ba8d8" stroke-width="1.6" points="${pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ')}"/><circle cx="${lp[0].toFixed(1)}" cy="${lp[1].toFixed(1)}" r="2.4" fill="#C23B78"/></svg>`;
+}
+function trendInsightText(k,a){
+  const parts=[];
+  parts.push(`ขายมาแล้ว ${a.pts.length} สัปดาห์ (สัปดาห์เต็ม ${a.nFull}) ยอดสะสม ${fmtBaht(a.total)}`);
+  parts.push(`สัปดาห์ล่าสุด ${fmtBaht(a.lastSales)} เฉลี่ย ${fmtBaht(a.last.v)} ต่อวัน`);
+  if(a.nFull>=2 && a.change!=null) parts.push(`เทียบเฉลี่ย 2 สัปดาห์ก่อนหน้า ${a.change>=0?'+':''}${Math.round(a.change*100)}% ต่อวัน`);
+  if(a.nFull>=2) parts.push(`ยอดต่อวันสูงสุดอยู่ที่สัปดาห์ ${trendLabels[a.peak.i]} (${fmtBaht(a.peak.v)} ต่อวัน) ตอนนี้เหลือ ${Math.round(a.pctPeak*100)}% ของพีค`);
+  else if(a.pts.length>=2){ const f=a.pts[0]; parts.push(`ยอดต่อวันช่วงเปิดขาย ${k.days} วันแรก ${fmtBaht(f.v)} เทียบสัปดาห์เต็มล่าสุด ${fmtBaht(a.last.v)} ต่อวัน`); }
+  if(a.gpLast!=null && trendGroupGpVal!=null){ const d=a.gpLast-trendGroupGpVal; parts.push(`GP ล่าสุด ${a.gpLast.toFixed(1)}% (${d>=0?'สูงกว่า':'ต่ำกว่า'}ค่าเฉลี่ยกลุ่มสินค้าใหม่ ${trendGroupGpVal.toFixed(1)}% อยู่ ${Math.abs(d).toFixed(1)} จุด)`); }
+  let t=parts.join(' · ')+'.';
+  if(a.nFull>=2 && a.change!=null && a.change<=-0.6) t+=' <b>ยอดลดฉับพลัน</b> ควรเช็คสต็อกหรือโปรโมชันที่หยุดไป';
+  if(trendNotes[k.code]) t+=' <b>หมายเหตุ:</b> '+trendNotes[k.code];
+  return t;
+}
+function renderTrendSummary(){
+  const groups={ 'กำลังโต / ฟื้นตัว':['up','rebound'], 'ทรงตัว':['flat'], 'ชะลอ / ผ่านพีคแล้ว':['slow','down'], 'ใหม่ (ข้อมูลน้อย)':['new'] };
+  const totalLast=trendRows.reduce((s,r)=>s+(r.k.sales[r.k.sales.length-1]||0),0);
+  const cls={'กำลังโต / ฟื้นตัว':'good','ทรงตัว':'','ชะลอ / ผ่านพีคแล้ว':'bad','ใหม่ (ข้อมูลน้อย)':''};
+  document.getElementById('trendCards').innerHTML=Object.entries(groups).map(([name,tones])=>{
+    const rs=trendRows.filter(r=>tones.includes(r.a.tone)); const s=rs.reduce((x,r)=>x+(r.k.sales[r.k.sales.length-1]||0),0);
+    return `<div class="card ${cls[name]}"><p class="label">${name}</p><p class="value">${rs.length} SKU</p><p class="label" style="margin:6px 0 0;">${fmtBaht(s)} (${(s/totalLast*100).toFixed(0)}% ของยอดสินค้าใหม่สัปดาห์ล่าสุด)</p></div>`;
+  }).join('');
+  const campIdx=trendLabels.indexOf('5-11 ต.ค.');
+  const nPeak=trendRows.filter(r=>r.a.peak.i===campIdx).length;
+  document.getElementById('trendPeakNote').innerHTML=`<b>ข้อควรระวังในการอ่าน:</b> ${nPeak} จาก ${trendRows.length} SKU มียอดต่อวันสูงสุดในสัปดาห์ 5–11 ต.ค. (ช่วงแคมเปญ 10.10 ที่ยอดรวมพอร์ตสูงถึง ฿1.99 ล้าน) ทำให้สัปดาห์ล่าสุด (12–18 ต.ค.) ของหลาย SKU ดูลดลงเมื่อเทียบกับพีค ส่วนหนึ่งน่าจะเป็นผลของแคมเปญ ไม่ใช่ปัญหาของตัวสินค้าเสมอไป · เกณฑ์จัดกลุ่ม: เทียบยอดต่อวันสัปดาห์ล่าสุดกับค่าเฉลี่ย 2 สัปดาห์ก่อนหน้า (โต ≥ +15%, ชะลอ ≤ −15%) และถ้าเหลือต่ำกว่า 60% ของพีคจัดเป็น "ผ่านพีค" · ข้อเสนอแนะเป็นกฎอัตโนมัติเบื้องต้น ไม่ใช่การตัดสินใจ`;
+}
+function renderTrendFilter(){
+  const cats=['ทั้งหมด','Makeup','Skincare','Fragrance'];
+  const el=document.getElementById('trendFilter'); el.innerHTML='';
+  cats.forEach(c=>{ const b=document.createElement('button'); b.textContent=c;
+    const act=c===trendFilterCat;
+    b.style.cssText='padding:7px 14px;border-radius:999px;border:1px solid var(--border);font-family:Sarabun,sans-serif;font-size:13px;font-weight:600;cursor:pointer;'+(act?'background:var(--blue-dark);color:#fff;border-color:var(--blue-dark);':'background:#fff;color:var(--text2);');
+    b.addEventListener('click',()=>{trendFilterCat=c; renderTrendFilter(); renderTrendTable();}); el.appendChild(b); });
+}
+function renderTrendTable(){
+  const tb=document.getElementById('trendBody'); tb.innerHTML='';
+  trendRows.filter(r=>trendFilterCat==='ทั้งหมด'||r.k.cat===trendFilterCat).forEach(({k,a})=>{
+    const tr=document.createElement('tr'); tr.style.cursor='pointer'; if(k.code===trendSelected) tr.style.background='var(--blue-soft)';
+    const chg=(a.nFull>=2&&a.change!=null)?`<span style="color:${a.change>=0?'#227a52':'#c53a3a'};font-weight:600;">${a.change>=0?'+':''}${Math.round(a.change*100)}%</span>`:'—';
+    const pk=(a.nFull>=2&&a.pctPeak!=null)?Math.round(a.pctPeak*100)+'%':'—';
+    tr.innerHTML=`<td><b>${k.code}</b><br><span style="font-size:11.5px;color:var(--text3);">${k.name.length>34?k.name.slice(0,34)+'…':k.name}</span></td><td>${k.cat}</td><td>${k.launch}</td><td>${fmtBaht(a.total)}</td><td>${fmtBaht(a.lastSales)}</td><td>${fmtBaht(a.last.v)}</td><td>${chg}</td><td>${pk}</td><td>${a.gpLast!=null?a.gpLast.toFixed(1)+'%':'—'}</td><td style="text-align:left;"><span class="flag-badge ${trendTone[a.tone]}">${a.status}</span></td><td>${trendSpark(a)}</td><td>${k.remain} วัน</td>`;
+    tr.addEventListener('click',()=>{ trendSelected=k.code; renderTrendTable(); renderTrendDetail(true); });
+    tb.appendChild(tr);
+  });
+}
+function renderTrendDetail(scroll){
+  const row=trendRows.find(r=>r.k.code===trendSelected); const k=row.k, a=row.a;
+  document.getElementById('trendDetailTitle').innerHTML=`${k.code} <span class="h2-sub">${k.name} · เริ่มขาย ${k.launch} · หมดสถานะสินค้าใหม่ ${k.expiry}</span>`;
+  const chgTxt=(a.nFull>=2&&a.change!=null)?`${a.change>=0?'+':''}${Math.round(a.change*100)}%`:'—';
+  const gpD=(a.gpLast!=null&&trendGroupGpVal!=null)?(a.gpLast-trendGroupGpVal):null;
+  document.getElementById('trendDetailCards').innerHTML=
+    `<div class="card"><p class="label">ยอดสะสมตั้งแต่เปิดขาย</p><p class="value">${fmtBaht(a.total)}</p></div>`+
+    `<div class="card"><p class="label">เฉลี่ยต่อวัน (2 สัปดาห์ล่าสุด)</p><p class="value">${fmtBaht(a.avgDay)}</p></div>`+
+    `<div class="card ${a.change!=null&&a.nFull>=2?(a.change>=0.15?'good':(a.change<=-0.15?'bad':'')):''}"><p class="label">สัปดาห์ล่าสุดเทียบก่อนหน้า (ต่อวัน)</p><p class="value">${chgTxt}</p></div>`+
+    `<div class="card"><p class="label">เทียบพีค (ต่อวัน)</p><p class="value">${(a.nFull>=2&&a.pctPeak!=null)?Math.round(a.pctPeak*100)+'%':'—'}</p></div>`+
+    `<div class="card ${gpD==null?'':(gpD>=0?'good':'bad')}"><p class="label">GP ล่าสุด (ค่าเฉลี่ยกลุ่ม ${trendGroupGpVal.toFixed(1)}%)</p><p class="value">${a.gpLast!=null?a.gpLast.toFixed(1)+'%':'—'}</p></div>`+
+    `<div class="card"><p class="label">เหลือก่อนหมดสถานะสินค้าใหม่</p><p class="value">${k.remain} วัน</p></div>`;
+  document.getElementById('trendInsight').innerHTML=`<b>${a.status}</b> · ข้อเสนอเบื้องต้น: ${a.action}<br><span style="display:block;margin-top:6px;">${trendInsightText(k,a)}</span>`;
+  if(trendDetailChart) trendDetailChart.destroy();
+  const partial=k.sales.map((v,i)=>v!=null && i===k.idx && k.days<7);
+  trendDetailChart=new Chart(document.getElementById('trendDetailChart'),{
+    data:{ labels:trendLabels, datasets:[
+      {type:'bar',label:'ยอดขายรายสัปดาห์ (บาท)',data:k.sales.map(v=>v==null?null:v),backgroundColor:partial.map(p=>p?'#cfe0f3':'#7ba8d8'),borderRadius:4,yAxisID:'y',order:2},
+      {type:'line',label:'GP% (แสดงเมื่อยอด ≥ ฿500)',data:k.gp.map((g,i)=>(g!=null&&k.sales[i]>=500)?g:null),borderColor:'#C23B78',backgroundColor:'#C23B78',pointRadius:3.5,tension:0.25,spanGaps:true,yAxisID:'y1',order:1},
+      {type:'line',label:'ค่าเฉลี่ย GP กลุ่มสินค้าใหม่ (สัปดาห์ล่าสุด)',data:trendLabels.map(()=>trendGroupGpVal),borderColor:'#9aa2b1',borderDash:[5,4],pointRadius:0,borderWidth:1.5,yAxisID:'y1',order:3}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{color:'#5b6472',font:{size:11},boxWidth:12}},
+        tooltip:{callbacks:{label:(ctx)=>ctx.dataset.yAxisID==='y'?'ยอดขาย '+fmtBaht(ctx.parsed.y)+(partial[ctx.dataIndex]?' (สัปดาห์เปิดขายไม่เต็ม '+k.days+' วัน)':''):ctx.dataset.label.split(' (')[0]+': '+ctx.parsed.y.toFixed(1)+'%'}}},
+      scales:{ y:{beginAtZero:true,position:'left',ticks:{callback:(v)=>'฿'+(v/1000)+'k',color:'#9aa2b1'},grid:{color:'#e7eaf0'}},
+               y1:{position:'right',min:40,max:100,ticks:{callback:(v)=>v+'%',color:'#C23B78'},grid:{display:false}},
+               x:{ticks:{color:'#9aa2b1'},grid:{display:false}} } }
+  });
+  if(scroll) document.getElementById('trendDetailTitle').scrollIntoView({behavior:'smooth',block:'start'});
+}
+renderTrendSummary(); renderTrendFilter(); renderTrendTable(); renderTrendDetail(false);
+
 </script>
 </body>
 </html>
